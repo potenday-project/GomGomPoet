@@ -2,12 +2,10 @@ import React, { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, TextInput, Button, View } from 'react-native';
 
-export default () => {
+export default ({ navigation }) => {
     const [text, onChangeText] = useState('');
 
-    const handlePressBtn = () => {
-
-    }
+    const handlePressBtn = () => navigation.navigate('Confide');
     
     return (
         <View style={styles.container}>
