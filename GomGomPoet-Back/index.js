@@ -1,8 +1,10 @@
 const https = require('https');
 const { HTTPS, CLOVA, PORT } = require('./constants');
 const express = require('express');
+const cors = require('cors');
 const app = express();
 app.use(express.json());
+app.use(cors());
 app.use(express.static('web-build'));
 
 const getStream = async (res, body) => {
