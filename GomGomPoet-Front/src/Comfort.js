@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Image } from 'react-native';
+import { fetchEventSource } from '@microsoft/fetch-event-source';
 
 let question = '학교에서 같은 반 남자아이를 좋아하게 됐는데 마음을 전하고 싶지만 용기가 나지 않아..'
 
@@ -13,9 +14,52 @@ let images = Array.from({length: 79}, (_, index) => index + 1);
 export default ({ route }) => {
   let { input, type } = route.params;
   let [randomIndex, setRandomIndex] = useState(0);
+  let [poem, setPoem] = useState('');
+  let [letter, setLetter] = useState('');
 
   useEffect(() => {
     setRandomIndex(Math.floor(Math.random() * images.length));
+    let headers = {
+        'Connection': 'keep-alive',
+        'Content-Type': 'application/json',
+        'Cache-Control': 'no-cache',
+        'changeOrigin': true
+    };
+    fetchEventSource('/' + type, {
+		method: 'POST',
+        headers,
+		body: JSON.stringify({ input }),
+		onmessage: event => {
+            let data = JSON.parse(event.data);
+            if (data.data === '[DONE]') {
+                return;
+            }
+            let content = data.message.content;
+            if (event.event === 'result') {
+                setPoem(content);
+                content = content.replaceAll('\n', '\\n');
+                fetchEventSource(`/${type}/letter`, {
+                    method: 'POST',
+                    headers,
+                    body: JSON.stringify({ input, content }),
+                    onmessage: event => {
+                        let data = JSON.parse(event.data);
+                        if (data.data === '[DONE]') {
+                            return;
+                        }
+                        let content = data.message.content;
+                        if (event.event === 'result') {
+                            setLetter(content);
+                        } else {
+                            setLetter(letter => letter + content);
+                        }
+                    }
+                });
+            } else {
+                setPoem(poem => poem + content);
+            }
+        }
+	});
   }, []);
 
   return (
@@ -27,7 +71,7 @@ export default ({ route }) => {
         <View style={styles.myQuestion}>
           <View style={[styles.box, styles.myQuestionBox]}>
             <Text style={[styles.title, styles.myQuestionTitle]}>나의 고민</Text>
-            <Text>{question}</Text>
+            <Text>{input}</Text>
           </View>
         </View>
 
