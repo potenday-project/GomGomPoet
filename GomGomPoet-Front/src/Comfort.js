@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, Image, ImageBackground } from 'react-native';
 import { fetchEventSource } from '@microsoft/fetch-event-source';
 import ShareModal from "./ShareModal";
 
@@ -10,11 +10,11 @@ let poem = '비밀스런 마음이 새하얗게 피어나네,/n봄바람처럼 �
 
 let letter = '안녕. 먼저, 용기를 내어 그 마음을 표현한 너에게 박수를 보내고 싶어졌어. 마음을 전하고 싶다는 감정은 언제나 아름다운 것이라고 생각해. 그러나 동시에, 두려움과 망설임이 드는 것도 이해해./n/n내가 바라는 건 네가 마음을 표현하는데 두려움을 극복하고, 상대에게 솔직하게 다가갈 용기를 갖는 것이야. 물론 결과는 어떻든, 그 순간의 결실이 네게 새로운 경험을 안겨줄 거야. 어떤 선택이든, 네가 행복하길 바라고 있어./n/n그리고 너의 감정을 이해해주는 사람들이 꼭 주변에 있다는 걸 잊지 마. 그들은 너를 지지하고, 네 곁에 있을 거야. 고민이나 어려움이 있으면 언제든 나에게 이야기해도 돼./n/n계속해서 용기 내어 나아가고, 자신을 더 알아가는 여정을 즐기길 바라고 있어./n/n언제든 말해줘.'
 
-let images = Array.from({length: 79}, (_, index) => index + 1);
+let IMAGE_COUNT = 79;
 
 export default ({ route }) => {
   let { input, type } = route.params;
-  let [randomIndex, setRandomIndex] = useState(0);
+  let [randomIndex, setRandomIndex] = useState(1);
   let [poem, setPoem] = useState('');
   let [letter, setLetter] = useState('');
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -24,7 +24,7 @@ export default ({ route }) => {
   };
 
   useEffect(() => {
-    setRandomIndex(Math.floor(Math.random() * images.length));
+    setRandomIndex(Math.floor(Math.random() * (IMAGE_COUNT-1)) + 1);
     let headers = {
         'Connection': 'keep-alive',
         'Content-Type': 'application/json',
@@ -70,9 +70,11 @@ export default ({ route }) => {
 
   return (
     <View style={styles.container}>
-      <ShareModal isVisible={isModalVisible} onClose={toggleModal} />
         <View style={[styles.thumbnail, styles.box]}>
-          <Image source={require(`../assets/bk_img/${images[randomIndex]}.jpg`)} style={styles.thumbnailImage} />
+          {/* <Image source={require(`../assets/bk_img/${randomIndex}.jpg`)} style={styles.thumbnailImage} /> */}
+          <ImageBackground source={require(`../assets/bk_img/${randomIndex}.jpg`)} resizeMode='cover'>
+            <Text>{poem}</Text>
+          </ImageBackground>
         </View>
 
         <View style={styles.myQuestion}>
