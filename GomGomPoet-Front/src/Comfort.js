@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { StyleSheet, Text, View, Image, ImageBackground } from 'react-native';
 import { fetchEventSource } from '@microsoft/fetch-event-source';
 
 let question = '학교에서 같은 반 남자아이를 좋아하게 됐는데 마음을 전하고 싶지만 용기가 나지 않아..'
@@ -13,11 +13,12 @@ let IMAGE_COUNT = 79;
 
 export default ({ route }) => {
   let { input, type } = route.params;
-  let [randomIndex, setRandomIndex] = useState(Math.floor(Math.random() * (IMAGE_COUNT-1)) + 1);
+  let [randomIndex, setRandomIndex] = useState(1);
   let [poem, setPoem] = useState('');
   let [letter, setLetter] = useState('');
 
   useEffect(() => {
+    setRandomIndex(Math.floor(Math.random() * (IMAGE_COUNT-1)) + 1);
     let headers = {
         'Connection': 'keep-alive',
         'Content-Type': 'application/json',
@@ -64,7 +65,10 @@ export default ({ route }) => {
   return (
     <View style={styles.container}>
         <View style={[styles.thumbnail, styles.box]}>
-          <Image source={require(`../assets/bk_img/${randomIndex}.jpg`)} style={styles.thumbnailImage} />
+          {/* <Image source={require(`../assets/bk_img/${randomIndex}.jpg`)} style={styles.thumbnailImage} /> */}
+          <ImageBackground source={require(`../assets/bk_img/${randomIndex}.jpg`)} resizeMode='cover'>
+            <Text>{poem}</Text>
+          </ImageBackground>
         </View>
 
         <View style={styles.myQuestion}>
