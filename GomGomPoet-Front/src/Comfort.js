@@ -1,7 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 import { fetchEventSource } from '@microsoft/fetch-event-source';
+import ShareModal from "./ShareModal";
 
 let question = '학교에서 같은 반 남자아이를 좋아하게 됐는데 마음을 전하고 싶지만 용기가 나지 않아..'
 
@@ -16,6 +17,11 @@ export default ({ route }) => {
   let [randomIndex, setRandomIndex] = useState(0);
   let [poem, setPoem] = useState('');
   let [letter, setLetter] = useState('');
+  const [isModalVisible, setIsModalVisible] = useState(false);
+
+  const toggleModal = () => {
+    setIsModalVisible(!isModalVisible);
+  };
 
   useEffect(() => {
     setRandomIndex(Math.floor(Math.random() * images.length));
@@ -64,6 +70,7 @@ export default ({ route }) => {
 
   return (
     <View style={styles.container}>
+      <ShareModal isVisible={isModalVisible} onClose={toggleModal} />
         <View style={[styles.thumbnail, styles.box]}>
           <Image source={require(`../assets/bk_img/${images[randomIndex]}.jpg`)} style={styles.thumbnailImage} />
         </View>
@@ -84,6 +91,10 @@ export default ({ route }) => {
           <View style={[styles.title, styles.messageTitle]}>곰곰시인의 편지</View>
            <Text>{letter}</Text>
         </View>
+
+        <TouchableOpacity onPress={toggleModal}>
+          <Text style={styles.buttonText}>공유하기</Text>
+        </TouchableOpacity>
       <StatusBar style='auto' />
     </View>
   );

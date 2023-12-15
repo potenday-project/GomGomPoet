@@ -170,4 +170,34 @@ export const styles = StyleSheet.create({
     height: undefined,
     aspectRatio: 1,
   },
+
+
+  shareImageContainer: {
+    width: '80%', // 이미지 컨테이너 너비를 100%로 설정
+    alignItems: 'center', // 중앙 정렬
+  },
+  shareImage: {
+    width: '80%', // 이미지 너비를 90%로 설정
+    height: 200, // 원하는 높이로 설정
+    justifyContent: 'center', // 이미지 내 텍스트를 중앙에 정렬
+  },
+  shareImageText: {
+    textAlign: 'center', // 텍스트를 중앙 정렬
+    color: 'white', // 텍스트 색상을 설정
+    fontSize: 18, // 텍스트 크기를 설정
+    fontWeight: 'bold', // 글꼴 두께 설정
+    backgroundColor: 'rgba(0, 0, 0, 0.1)', // 텍스트 배경색 설정
+    padding: 100, // 텍스트 주변 패딩 설정
+  },
+  scrollView: {
+    flex: 1, // 스크롤 뷰가 모달의 나머지 공간을 채우도록 함
+  },
+
+  circleButton: {
+    width: 40, // 원하는 크기로 조절
+    height: 40, // 원하는 크기로 조절
+    borderRadius: 20, // width / 2 로 설정하여 완벽한 원을 만듦
+    marginHorizontal: 5, // 버튼 사이의 간격
+    // 버튼에 그림자나 다른 스타일을 추가할 수 있습니다.
+  },
 });
