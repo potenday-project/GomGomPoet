@@ -1,8 +1,10 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Image, ImageBackground, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, ScrollView, ImageBackground, TouchableOpacity } from 'react-native';
 import { fetchEventSource } from '@microsoft/fetch-event-source';
 import ShareModal from "./ShareModal";
+import { Sharing } from 'expo';
+import ViewShot from 'react-native-view-shot';
 
 let question = '학교에서 같은 반 남자아이를 좋아하게 됐는데 마음을 전하고 싶지만 용기가 나지 않아..'
 
@@ -18,64 +20,94 @@ export default ({ route }) => {
   let [poem, setPoem] = useState('');
   let [letter, setLetter] = useState('');
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const viewShotRef = useRef(null);
+
+  // 이미지 공유 함수
+  const shareImage = async () => {
+    try {
+      // 이미지를 캡처합니다
+      const uri = await viewRef.current.capture();
+
+      // 이미지를 캡처한 후 일정 시간을 기다립니다 (비동기 처리가 완료되기를 기다립니다)
+      await new Promise(resolve => setTimeout(resolve, 1000));
+
+      // Expo의 Sharing 모듈을 사용하여 이미지를 공유합니다
+      await Sharing.shareAsync(uri, { mimeType: 'image/png', dialogTitle: '이미지 공유하기' });
+    } catch (error) {
+      console.error('이미지 공유 중 오류 발생:', error);
+    }
+  };
 
   const toggleModal = () => {
     setIsModalVisible(!isModalVisible);
   };
 
   useEffect(() => {
-    setRandomIndex(Math.floor(Math.random() * (IMAGE_COUNT-1)) + 1);
+    setRandomIndex(Math.floor(Math.random() * (IMAGE_COUNT - 1)) + 1);
     let headers = {
-        'Connection': 'keep-alive',
-        'Content-Type': 'application/json',
-        'Cache-Control': 'no-cache',
-        'changeOrigin': true
+      'Connection': 'keep-alive',
+      'Content-Type': 'application/json',
+      'Cache-Control': 'no-cache',
+      'changeOrigin': true
     };
     fetchEventSource('/' + type, {
-		method: 'POST',
-        headers,
-		body: JSON.stringify({ input }),
-		onmessage: event => {
-            let data = JSON.parse(event.data);
-            if (data.data === '[DONE]') {
-                return;
-            }
-            let content = data.message.content;
-            if (event.event === 'result') {
-                setPoem(content);
-                content = content.replaceAll('\n', '\\n');
-                fetchEventSource(`/${type}/letter`, {
-                    method: 'POST',
-                    headers,
-                    body: JSON.stringify({ input, content }),
-                    onmessage: event => {
-                        let data = JSON.parse(event.data);
-                        if (data.data === '[DONE]') {
-                            return;
-                        }
-                        let content = data.message.content;
-                        if (event.event === 'result') {
-                            setLetter(content);
-                        } else {
-                            setLetter(letter => letter + content);
-                        }
-                    }
-                });
-            } else {
-                setPoem(poem => poem + content);
-            }
+      method: 'POST',
+      headers,
+      body: JSON.stringify({ input }),
+      onmessage: event => {
+        let data = JSON.parse(event.data);
+        if (data.data === '[DONE]') {
+          return;
         }
-	});
+        let content = data.message.content;
+        if (event.event === 'result') {
+          setPoem(content);
+          content = content.replaceAll('\n', '\\n');
+          fetchEventSource(`/${type}/letter`, {
+            method: 'POST',
+            headers,
+            body: JSON.stringify({ input, content }),
+            onmessage: event => {
+              let data = JSON.parse(event.data);
+              if (data.data === '[DONE]') {
+                return;
+              }
+              let content = data.message.content;
+              if (event.event === 'result') {
+                setLetter(content);
+              } else {
+                setLetter(letter => letter + content);
+              }
+            }
+          });
+        } else {
+          setPoem(poem => poem + content);
+        }
+      }
+    });
   }, []);
 
   return (
-    <View style={styles.container}>
-        <View style={[styles.thumbnail, styles.box]}>
-          {/* <Image source={require(`../assets/bk_img/${randomIndex}.jpg`)} style={styles.thumbnailImage} /> */}
-          <ImageBackground source={require(`../assets/bk_img/${randomIndex}.jpg`)} resizeMode='cover'>
-            <Text>{poem}</Text>
-          </ImageBackground>
+    <ImageBackground style={styles.container}
+      source={require(`../assets/bk-img.jpg`)}
+    >
+      <ScrollView>
+        <View style={styles.logo}>
+          <ImageBackground source={require(`../assets/logo.jpg`)} style={styles.logoimg} />
         </View>
+        <ViewShot ref={viewShotRef} style={styles.box} options={{format: 'png', quality: 0.9}}>
+          <ImageBackground source={require(`../assets/tnl_img/${randomIndex}.jpg`)} resizeMode='cover' style={styles.thumbnail}>
+            <Text>{poem}</Text>
+
+            {/* 이미지 공유 버튼 추가 */}
+            <TouchableOpacity onPress={shareImage} style={styles.tnlBtnClk}>
+              <Text style={styles.tnlBtnTxt}>이미지 공유하기</Text>
+            </TouchableOpacity>
+
+            <StatusBar style='auto' />
+
+          </ImageBackground>
+        </ViewShot>
 
         <View style={styles.myQuestion}>
           <View style={[styles.box, styles.myQuestionBox]}>
@@ -91,23 +123,40 @@ export default ({ route }) => {
 
         <View style={[styles.answerMessage, styles.box]}>
           <View style={[styles.title, styles.messageTitle]}>곰곰시인의 편지</View>
-           <Text>{letter}</Text>
+          <Text>{letter}</Text>
         </View>
 
         <TouchableOpacity onPress={toggleModal}>
           <Text style={styles.buttonText}>공유하기</Text>
         </TouchableOpacity>
-      <StatusBar style='auto' />
-    </View>
+
+        <StatusBar style='auto' />
+      </ScrollView>
+    </ImageBackground>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: 'rgb(191, 225, 192)',
-    backgroundImage: 'radial-gradient(rgb(127 197 129) 25%, transparent 0), radial-gradient(rgb(127 197 129) 25%, transparent 0)',
-    backgroundPosition: '0 0, 40px 40px',
-    backgroundSize: '80px 80px'
+    // backgroundColor: 'rgb(191, 225, 192)',
+    // backgroundImage: 'radial-gradient(rgb(127 197 129) 25%, transparent 0), radial-gradient(rgb(127 197 129) 25%, transparent 0)',
+    // backgroundPosition: '0 0, 40px 40px',
+    // backgroundSize: '80px 80px'
+    flex: 1,
+    resizeMode: 'cover', // 이미지 크기에 맞게 조절
+    justifyContent: 'center',
+    backgroundAttachment: 'fixed'
+  },
+  logo: {
+    width: '200px',
+    height: '70px',
+    margin: 'auto',
+    marginTop: '10px',
+  },
+  logoimg: {
+    flex: 1,
+    resizeMode: 'cover', // 이미지 크기에 맞게 조절
+    justifyContent: 'center',
   },
   box: {
     width: '270px',
@@ -115,7 +164,7 @@ const styles = StyleSheet.create({
     borderRadius: '7px',
     textAlign: 'center',
     margin: 'auto',
-    marginTop: '15px'
+    marginTop: '20px'
   },
   title: {
     margin: 'auto',
@@ -129,7 +178,6 @@ const styles = StyleSheet.create({
   },
   thumbnail: {
     margin: 'auto',
-    marginTop: '20px',
     width: '270px',
     height: '300px',
     textAlign: 'center',
@@ -142,9 +190,22 @@ const styles = StyleSheet.create({
     resizeMode: 'cover', // 이미지 비율 유지 및 여백 채우기
     borderRadius: 7,
   },
+  tnlBtnClk: {
+    position: 'relative',
+    top: '310px',
+    width: '120px',
+  },
+  tnlBtnTxt: {
+    textAlign: 'center',
+    backgroundColor: 'rgb(143, 191, 131)',
+    borderRadius: '7px',
+    color: 'white',
+    height: '30px',
+    lineHeight: '30px'
+  },
   myQuestionBox: {
     padding: '15px',
-    marginTop: '30px'
+    marginTop: '60px'
   },
   myQuestionTitle: {
     width: '100px'
