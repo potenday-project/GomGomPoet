@@ -13,9 +13,9 @@ import Tab from "./Tab";
 import { styles } from "./Style";
 
 export default ({ navigation }) => {
-  const handlePressBtn = () => navigation.navigate("Comfort");
   const [inputText, setInputText] = useState("");
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const handlePressBtn = (type) => navigation.navigate("Comfort", { input: inputText, type });
 
   const toggleModal = () => {
     setIsModalVisible(!isModalVisible); // 모달 가시성을 토글
@@ -68,13 +68,13 @@ export default ({ navigation }) => {
           <View style={{ flexDirection: "row" }}>
             <TouchableOpacity
               style={[styles.button, { width: 80 }]}
-              onPress={handlePressBtn}
+              onPress={() => handlePressBtn('poem')}
             >
               <Text style={styles.buttonText}>시</Text>
             </TouchableOpacity>
             <TouchableOpacity
               style={[styles.button, { width: 80 }]}
-              onPress={handlePressBtn}
+              onPress={() => handlePressBtn('acrosticpoem')}
             >
               <Text style={styles.buttonText}>N행시</Text>
             </TouchableOpacity>

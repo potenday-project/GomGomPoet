@@ -10,8 +10,8 @@ let letter = '안녕. 먼저, 용기를 내어 그 마음을 표현한 너에게
 
 let images = Array.from({length: 79}, (_, index) => index + 1);
 
-export default () => {
-
+export default ({ route }) => {
+  let { input, type } = route.params;
   let [randomIndex, setRandomIndex] = useState(0);
 
   useEffect(() => {
