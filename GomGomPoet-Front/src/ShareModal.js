@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import {
   Text,
   SafeAreaView,
@@ -21,7 +21,7 @@ const CircleButton = ({ color, onPress }) => (
 );
 
 
-const ShareModal = ({ isVisible, onClose, poem, randomIndex, color, setColor }) => {
+const ShareModal = ({ isVisible, onClose, poem, randomIndex, color, setColor, shareHistory }) => {
   const colors = ['#5adbbd', '#fba465', '#9b6aca', '#ec6c6e', '#f5aac3', '#6ec7e0', '#e86363']; // 색상 값 배열
   const viewShotRef = useRef(null);
 
@@ -97,6 +97,7 @@ const ShareModal = ({ isVisible, onClose, poem, randomIndex, color, setColor }) 
               </TouchableOpacity>
               <TouchableOpacity
                 style={[styles.button, { width: 100 }]}
+                onPress={shareHistory}
               >
                 <Text style={styles.buttonText}>자랑하기</Text>
               </TouchableOpacity>

@@ -13,7 +13,7 @@ let letter = '안녕. 먼저, 용기를 내어 그 마음을 표현한 너에게
 
 let IMAGE_COUNT = 79;
 
-export default ({ route }) => {
+export default ({ route, navigation }) => {
   let { input, type } = route.params;
   let [randomIndex, setRandomIndex] = useState(1);
   let [poem, setPoem] = useState('');
@@ -44,6 +44,17 @@ export default ({ route }) => {
       console.error('이미지 공유 중 오류 발생:', error);
     }
   };
+
+  const shareHistory = () => {
+    fetch('/history', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ type, input, poem, letter, image: randomIndex, color })
+    }).then(res => {
+        setIsModalVisible(false);
+        navigation.navigate('History');
+    })
+  }
 
   const toggleModal = () => {
     setIsModalVisible(!isModalVisible);
@@ -96,7 +107,7 @@ export default ({ route }) => {
 
   return (
     <ImageBackground style={styles.container}>
-      <ShareModal isVisible={isModalVisible} onClose={() => setIsModalVisible(false)} poem={poem} randomIndex={randomIndex} color={color} setColor={setColor}/>
+      <ShareModal isVisible={isModalVisible} onClose={() => setIsModalVisible(false)} poem={poem} randomIndex={randomIndex} color={color} setColor={setColor} shareHistory={shareHistory}/>
       <ScrollView>
         <View style={styles.logo}>
           <ImageBackground source={require(`../assets/logo.jpg`)} style={styles.logoimg} />
