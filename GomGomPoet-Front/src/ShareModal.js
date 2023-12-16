@@ -31,14 +31,13 @@ const ShareModal = ({ isVisible, onClose, poem, randomIndex }) => {
       visible={isVisible}
       onRequestClose={onClose}
     >
-        <View style={styles.header}>
+        <View style={[styles.header, {justifyContent: 'flex-end'}]}>
           {/* <Text style={styles.headerText}>공유하기</Text> */}
             <TouchableOpacity
               onPress={onClose}
-              // style={[styles.button, { width: 80 }]}
             >
               <Image
-                source={require("../assets/question-line.png")} // 이미지 경로는 실제 이미지에 맞게 변경하세요.
+                source={require("../assets/close.png")} // 이미지 경로는 실제 이미지에 맞게 변경하세요.
                 style={styles.helpImage}
               />
 
