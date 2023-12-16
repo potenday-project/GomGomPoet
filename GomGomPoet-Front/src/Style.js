@@ -128,7 +128,8 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 20,
     backgroundColor: "#F9F9F9",
     paddingVertical: 10,
-    marginBottom: 5,
+    marginTop: 10,
+    marginBottom: 0,
     borderTopColor: "#E0E0E0",
     borderTopWidth: 1, // 맨 위에 선을 추가
   },

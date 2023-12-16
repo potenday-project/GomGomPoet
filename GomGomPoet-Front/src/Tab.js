@@ -62,7 +62,7 @@ export default ({ navigation, idx = 0 }) => {
   return (
     <View style={styles.tabBar}>
       <TabButton
-        label="Tab 1"
+        label="고민해결"
         idx={0}
         isSelected={selectedTabIdx === 0}
         onPress={() => handlePressButton(0)}
@@ -74,7 +74,7 @@ export default ({ navigation, idx = 0 }) => {
         onPress={() => handlePressButton(1)}
       /> */}
       <TabButton
-        label="Tab 3"
+        label="자랑하기"
         idx={2}
         isSelected={selectedTabIdx === 2}
         onPress={() => handlePressButton(2)}
