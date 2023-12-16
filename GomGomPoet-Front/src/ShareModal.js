@@ -21,7 +21,7 @@ const CircleButton = ({ color, onPress }) => (
 );
 
 
-const ShareModal = ({ isVisible, onClose }) => {
+const ShareModal = ({ isVisible, onClose, poem, randomIndex }) => {
   const colors = ['#5adbbd', '#fba465', '#9b6aca', '#ec6c6e', '#f5aac3', '#6ec7e0', '#e86363']; // 색상 값 배열
 
   return (
@@ -32,7 +32,7 @@ const ShareModal = ({ isVisible, onClose }) => {
       onRequestClose={onClose}
     >
         <View style={styles.header}>
-          <Text style={styles.headerText}>공유하기</Text>
+          {/* <Text style={styles.headerText}>공유하기</Text> */}
             <TouchableOpacity
               onPress={onClose}
               // style={[styles.button, { width: 80 }]}
@@ -50,11 +50,11 @@ const ShareModal = ({ isVisible, onClose }) => {
           <View style={{alignItems: "center", justifyContent: "center", height: '70%'}}>
             <View style={{alignItems: 'center'}}>
                 <ImageBackground
-                  source={require("../assets/tnl_img/1.jpg")} // 실제 이미지 경로로 변경하세요.
+                  source={require(`../assets/tnl_img/${randomIndex}.jpg`)} // 실제 이미지 경로로 변경하세요.
                   style={{ width: '100%', height: '100%', alignItems: 'center', justifyContent: 'center' }}
                   // resizeMode="contain"
                 >
-                  <Text style={styles.shareImageText}>예시 텍스트입니다</Text>
+                  <Text style={styles.shareImageText}>{poem}</Text>
                 </ImageBackground>
             </View>
           </View>

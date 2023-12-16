@@ -21,6 +21,8 @@ export default ({ route }) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const viewShotRef = useRef(null);
 
+  const handleClickShareBtn = () => setIsModalVisible(true);
+
   // 이미지 공유 함수
   const shareImage = async () => {
     try {
@@ -93,6 +95,7 @@ export default ({ route }) => {
 
   return (
     <ImageBackground style={styles.container}>
+      <ShareModal isVisible={isModalVisible} onClose={() => setIsModalVisible(false)} poem={poem} randomIndex={randomIndex}/>
       <ScrollView>
         <View style={styles.logo}>
           <ImageBackground source={require(`../assets/logo.jpg`)} style={styles.logoimg} />
@@ -110,7 +113,7 @@ export default ({ route }) => {
 
 
         {/* 이미지 공유 버튼 추가 */}
-        <TouchableOpacity onPress={shareImage} style={styles.tnlBtnClk}>
+        <TouchableOpacity onPress={handleClickShareBtn} style={styles.tnlBtnClk}>
           <Text style={styles.tnlBtnTxt}>이미지 공유하기</Text>
         </TouchableOpacity>
 
@@ -133,9 +136,9 @@ export default ({ route }) => {
           <Text>{letter}</Text>
         </View>
 
-        <TouchableOpacity onPress={toggleModal}>
+        {/* <TouchableOpacity onPress={toggleModal}>
           <Text style={styles.buttonText}>공유하기</Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
 
         <StatusBar style='auto' />
       </ScrollView>
