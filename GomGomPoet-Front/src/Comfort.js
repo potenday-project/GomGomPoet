@@ -5,6 +5,7 @@ import { fetchEventSource } from '@microsoft/fetch-event-source';
 import ShareModal from "./ShareModal";
 import ViewShot from 'react-native-view-shot';
 import Tab from "./Tab";
+import { styles as extStyles } from "./Style";
 
 let question = '학교에서 같은 반 남자아이를 좋아하게 됐는데 마음을 전하고 싶지만 용기가 나지 않아..'
 
@@ -134,26 +135,26 @@ export default ({ route, navigation }) => {
 
         {/* 이미지 공유 버튼 추가 */}
         <TouchableOpacity onPress={handleClickShareBtn} style={styles.tnlBtnClk}>
-          <Text style={styles.tnlBtnTxt}>이미지 공유하기</Text>
+          <Text style={[styles.tnlBtnTxt, extStyles.defaultFont]}>이미지 공유하기</Text>
         </TouchableOpacity>
 
         <View style={styles.myQuestion}>
           <View style={[styles.box, styles.myQuestionBox]}>
-            <Text style={[styles.title, styles.myQuestionTitle]}>나의 고민</Text>
-            <Text>{input}</Text>
+            <Text style={[styles.title, styles.myQuestionTitle, extStyles.defaultFont]}>나의 고민</Text>
+            <Text style={extStyles.defaultFont}>{input}</Text>
           </View>
         </View>
 
         <View style={[styles.answerTxt, styles.box]}>
-          <Text style={[styles.title, styles.answerTitle]}>
+          <Text style={[styles.title, styles.answerTitle, extStyles.defaultFont]}>
             {type === 'poem' ? '시' : 'N행시'}
           </Text>
-          <Text>{poem}</Text>
+          <Text style={extStyles.defaultFont}>{poem}</Text>
         </View>
 
         <View style={[styles.answerMessage, styles.box]}>
-          <View style={[styles.title, styles.messageTitle]}>곰곰시인의 편지</View>
-          <Text>{letter}</Text>
+          <View style={[styles.title, styles.messageTitle, extStyles.defaultFont]}>곰곰시인의 편지</View>
+          <Text style={extStyles.defaultFont}>{letter}</Text>
         </View>
 
         {/* <TouchableOpacity onPress={toggleModal}>
