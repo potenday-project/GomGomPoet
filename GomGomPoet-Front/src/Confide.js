@@ -44,7 +44,7 @@ export default ({ navigation }) => {
         <View style={styles.containerCenterMiddle}>
           <View style={[styles.logoImageContainer, { marginBottom: 10 }]}>
             <Image
-              source={require("../assets/logo.jpg")}
+              source={require("../assets/logo.png")}
               style={styles.logoImage}
             />
           </View>

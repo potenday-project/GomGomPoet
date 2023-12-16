@@ -119,14 +119,14 @@ export default ({ route, navigation }) => {
       <ShareModal isVisible={isModalVisible} onClose={() => setIsModalVisible(false)} poem={poem} randomIndex={randomIndex} color={color} setColor={setColor} shareHistory={shareHistory} />
       <ScrollView>
         <View style={styles.logo}>
-          <ImageBackground source={require(`../assets/logo.jpg`)} style={styles.logoimg} />
+          <ImageBackground source={require(`../assets/logo.png`)} style={styles.logoimg} />
         </View>
         <ViewShot ref={viewShotRef} style={styles.box} options={{ format: 'png', quality: 0.9 }}>
           <ImageBackground source={require(`../assets/tnl_img/${randomIndex}.jpg`)} resizeMode='cover'
             style={[styles.thumbnail, { position: 'relative' }]}>
             <Text style={[{ color }, extStyles.thumbFont]}>{poem}</Text>
             <View style={styles.tnlLogoBox}>
-              <ImageBackground source={require(`../assets/logo.jpg`)} style={[styles.logoimg, styles.tnlLogo]} />
+              <ImageBackground source={require(`../assets/logo.png`)} style={[styles.logoimg, styles.tnlLogo]} />
             </View>
           </ImageBackground>
         </ViewShot>
