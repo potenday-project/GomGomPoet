@@ -1,3 +1,4 @@
+const fs = require('fs');
 const https = require('https');
 const { HTTPS, CLOVA, PORT } = require('./constants');
 const express = require('express');
@@ -53,6 +54,45 @@ app.post('/poem/letter', async (req, res) => {
 
 app.post('/acrosticpoem/letter', async (req, res) => {
     await getStream(res, replaceParams(CLOVA.ACROSTICPOEM_LETTER, req.body));
+})
+
+const createFileName = (date) => {
+    let year = date.getFullYear();
+    let month = String(date.getMonth() + 1).padStart(2, '0');
+    let day = String(date.getDate()).padStart(2, '0');
+    let hours = String(date.getHours()).padStart(2, '0');
+    let minutes = String(date.getMinutes()).padStart(2, '0');
+    let seconds = String(date.getSeconds()).padStart(2, '0');
+    let milliseconds = String(date.getMilliseconds()).padStart(3, '0');
+    return `${year}${month}${day}_${hours}${minutes}${seconds}_${milliseconds}.json`;
+}
+
+app.get('/history', (req, res) => {
+    fs.readdir('./history', async (err, files) => {
+        if (err) {
+            console.error(err);
+            return res.status(500).send(err);
+        }
+        files.sort().reverse();
+        for (let i=0; i<files.length; i++) {
+            let data = await fs.readFileSync('./history/' + files[i], 'utf8');
+            data = JSON.parse(data);
+            files[i] = data;
+        }
+        return res.send(files);
+    })
+})
+
+app.post('/history', (req, res) => {
+    let date = new Date();
+    req.body.date = date;
+    fs.writeFile('./history/' + createFileName(date), JSON.stringify(req.body), 'utf8', err => {
+        if (err) {
+            console.error(err);
+            return res.status(500).send(err);
+        }
+        return res.send('OK');
+    })
 })
 
 const init = () => console.log('Server is running on port ' + PORT);
