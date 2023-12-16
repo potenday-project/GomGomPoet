@@ -203,11 +203,11 @@ export const styles = StyleSheet.create({
     paddingBottom: '100px'
   },
   shareLogoBox: {
-    width: '150px',
-    height: '75px',
+    width: '190px',
+    height: '50px',
     position: 'absolute',
-    bottom: 0,
-    right: 0
+    bottom: '5px',
+    right: '5px'
   },
   scrollView: {
     flex: 1, // 스크롤 뷰가 모달의 나머지 공간을 채우도록 함
