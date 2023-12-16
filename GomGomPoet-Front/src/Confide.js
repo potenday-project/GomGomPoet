@@ -4,6 +4,7 @@ import {
   Text,
   SafeAreaView,
   Image,
+  ImageBackground,
   View,
   TextInput,
   TouchableOpacity,
@@ -22,12 +23,13 @@ export default ({ navigation }) => {
   };
 
   return (
-    <View style={styles.view}>
+    <ImageBackground style={styles.view} source={require(`../assets/bk-img.jpg`)}>
       <SafeAreaView
         style={styles.safeAreaContainer}
         edges={["top", "right", "bottom", "left"]}
       >
         <PopupModal isVisible={isModalVisible} onClose={toggleModal} />
+        {/*
         <View style={styles.header}>
           <Text style={styles.headerText}>곰곰시인</Text>
           <TouchableOpacity onPress={toggleModal}>
@@ -38,6 +40,15 @@ export default ({ navigation }) => {
           </TouchableOpacity>
         </View>
         <View style={styles.headerSeparator}></View>
+        */}
+        <View style={styles.containerCenterMiddle}>
+          <View style={[styles.logoImageContainer, { marginBottom: 10 }]}>
+            <Image
+              source={require("../assets/logo.jpg")}
+              style={styles.logoImage}
+            />
+          </View>
+        </View>
         <View style={styles.containerCenterMiddle}>
           <View style={[styles.gomgomImageContainer, { marginTop: 10 }]}>
             <Image
@@ -84,6 +95,6 @@ export default ({ navigation }) => {
       </SafeAreaView>
 
       <Tab navigation={navigation} idx={0} />
-    </View>
+    </ImageBackground>
   );
 };
