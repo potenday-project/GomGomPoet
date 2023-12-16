@@ -128,7 +128,8 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 20,
     backgroundColor: "#F9F9F9",
     paddingVertical: 10,
-    marginBottom: 5,
+    marginTop: 10,
+    marginBottom: 0,
     borderTopColor: "#E0E0E0",
     borderTopWidth: 1, // 맨 위에 선을 추가
   },
@@ -200,4 +201,15 @@ export const styles = StyleSheet.create({
     marginHorizontal: 5, // 버튼 사이의 간격
     // 버튼에 그림자나 다른 스타일을 추가할 수 있습니다.
   },
+
+  logoImageContainer: {
+    width: 200,
+    height: 70,
+    justifyContent: 'center'
+  },
+  logoImage: {
+    width: '100%',
+    height: '100%',
+    resizeMode: 'cover'
+  }
 });
