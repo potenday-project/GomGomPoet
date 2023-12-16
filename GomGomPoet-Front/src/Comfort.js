@@ -3,7 +3,6 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, ScrollView, ImageBackground, TouchableOpacity } from 'react-native';
 import { fetchEventSource } from '@microsoft/fetch-event-source';
 import ShareModal from "./ShareModal";
-import { Sharing } from 'expo';
 import ViewShot from 'react-native-view-shot';
 
 let question = '학교에서 같은 반 남자아이를 좋아하게 됐는데 마음을 전하고 싶지만 용기가 나지 않아..'
@@ -26,13 +25,18 @@ export default ({ route }) => {
   const shareImage = async () => {
     try {
       // 이미지를 캡처합니다
-      const uri = await viewRef.current.capture();
+      const uri = await viewShotRef.current.capture();
 
       // 이미지를 캡처한 후 일정 시간을 기다립니다 (비동기 처리가 완료되기를 기다립니다)
       await new Promise(resolve => setTimeout(resolve, 1000));
-
-      // Expo의 Sharing 모듈을 사용하여 이미지를 공유합니다
-      await Sharing.shareAsync(uri, { mimeType: 'image/png', dialogTitle: '이미지 공유하기' });
+      
+      const blob = await (await fetch(uri)).blob();
+      const file = new File([blob], 'fileName.png', { type: blob.type });
+      navigator.share({
+        title: 'Hello',
+        text: 'Check out this image!',
+        files: [file]
+      });
     } catch (error) {
       console.error('이미지 공유 중 오류 발생:', error);
     }
