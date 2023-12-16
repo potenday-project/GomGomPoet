@@ -66,15 +66,15 @@ const ShareModal = ({ isVisible, onClose, poem, randomIndex }) => {
             </View>
           </View>
 
-          <View style={[styles.containerCenter, { marginTop: 10 }]}>
+          <View style={[styles.containerCenter, { marginTop: 10, marginBottom: 10 }]}>
             <View style={{ flexDirection: "row" }}>
               <TouchableOpacity
-                style={[styles.button, { width: 80 }]}
+                style={[styles.button, { width: 100, marginRight: 10 }]}
               >
                 <Text style={styles.buttonText}>공유하기</Text>
               </TouchableOpacity>
               <TouchableOpacity
-                style={[styles.button, { width: 80 }]}
+                style={[styles.button, { width: 100 }]}
               >
                 <Text style={styles.buttonText}>자랑하기</Text>
               </TouchableOpacity>
