@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { StatusBar } from "expo-status-bar";
 import {
   Text,
@@ -10,14 +10,22 @@ import {
 } from "react-native";
 import Tab from "./Tab";
 import { Dimensions } from "react-native";
-import { data } from "./Data";
+// import { data } from "./Data";
 import { styles } from "./Style";
 
 const windowWidth = Dimensions.get("window").width;
 const roundBoxWidthPercentage = 90;
 
 export default ({ navigation }) => {
+  const [data, setData] = useState([]);
+
   const roundBoxWidth = (windowWidth * roundBoxWidthPercentage) / 100;
+
+  useEffect(() => {
+    fetch('/history')
+    .then(res => res.json())
+    .then(res => setData(res))
+  }, []);
 
   return (
     <View style={styles.view}>
@@ -47,15 +55,15 @@ export default ({ navigation }) => {
               >
                 <View style={styles.contentContainer}>
                   <View style={styles.circleImage}>
-                    <Image source={item.image} style={styles.userImage} />
+                    <Image source={require(`../assets/tnl_img/${item.image}.jpg`)} style={styles.userImage} />
                   </View>
                   <View style={styles.textContainer}>
-                    <Text style={styles.title}>{item.date}</Text>
-                    <Text style={styles.description}>{item.description}</Text>
+                    <Text style={styles.title}>{item.date.replace(/T.+/, '')}</Text>
+                    <Text style={styles.description}>{item.input}</Text>
                   </View>
                   <View style={styles.buttonContainer}>
                     <TouchableOpacity style={styles.button}>
-                      <Text></Text>
+                      <Text>상세보기</Text>
                     </TouchableOpacity>
                   </View>
                 </View>
