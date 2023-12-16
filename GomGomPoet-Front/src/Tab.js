@@ -29,6 +29,7 @@ const TabButton = ({ label, idx, isSelected, onPress }) => {
         style={[
           styles.tabButtonText,
           isSelected ? styles.tabButtonTextSelected : null,
+          styles.defaultFont
         ]}
       >
         {label}

@@ -58,16 +58,16 @@ export default ({ navigation }) => {
           </View>
         </View>
         <View style={[styles.containerCenterMiddle, { marginTop: 10 }]}>
-          <Text style={[styles.text, { width: "80%", textAlign: "center" }]}>
+          <Text style={[styles.text, { width: "80%", textAlign: "center" }, styles.defaultFont]}>
             고민을 적어주시면
           </Text>
-          <Text style={[styles.text, { width: "80%", textAlign: "center" }]}>
+          <Text style={[styles.text, { width: "80%", textAlign: "center" }, styles.defaultFont]}>
             시와 N행시로 고민을 해결해드립니다.
           </Text>
         </View>
         <View style={[styles.containerCenterMiddle, { marginTop: 10 }]}>
           <TextInput
-            style={styles.input}
+            style={[styles.input, styles.defaultFont]}
             placeholder="오늘의 고민을 입력해주세요."
             onChangeText={(text) => setInputText(text)}
             value={inputText}
@@ -81,13 +81,13 @@ export default ({ navigation }) => {
               style={[styles.button, { width: 80 }]}
               onPress={() => handlePressBtn('poem')}
             >
-              <Text style={styles.buttonText}>시</Text>
+              <Text style={[styles.buttonText, styles.defaultFont]}>시</Text>
             </TouchableOpacity>
             <TouchableOpacity
               style={[styles.button, { width: 80 }]}
               onPress={() => handlePressBtn('acrosticpoem')}
             >
-              <Text style={styles.buttonText}>N행시</Text>
+              <Text style={[styles.buttonText, styles.defaultFont]}>N행시</Text>
             </TouchableOpacity>
           </View>
         </View>
