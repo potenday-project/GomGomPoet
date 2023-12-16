@@ -18,6 +18,7 @@ export default ({ route }) => {
   let [randomIndex, setRandomIndex] = useState(1);
   let [poem, setPoem] = useState('');
   let [letter, setLetter] = useState('');
+  let [color, setColor] = useState('#5adbbd');
   const [isModalVisible, setIsModalVisible] = useState(false);
   const viewShotRef = useRef(null);
 
@@ -95,7 +96,7 @@ export default ({ route }) => {
 
   return (
     <ImageBackground style={styles.container}>
-      <ShareModal isVisible={isModalVisible} onClose={() => setIsModalVisible(false)} poem={poem} randomIndex={randomIndex}/>
+      <ShareModal isVisible={isModalVisible} onClose={() => setIsModalVisible(false)} poem={poem} randomIndex={randomIndex} color={color} setColor={setColor}/>
       <ScrollView>
         <View style={styles.logo}>
           <ImageBackground source={require(`../assets/logo.jpg`)} style={styles.logoimg} />
@@ -103,7 +104,7 @@ export default ({ route }) => {
         <ViewShot ref={viewShotRef} style={styles.box} options={{ format: 'png', quality: 0.9 }}>
           <ImageBackground source={require(`../assets/tnl_img/${randomIndex}.jpg`)} resizeMode='cover'
             style={[styles.thumbnail, { position: 'relative' }]}>
-            <Text>{poem}</Text>
+            <Text style={{ color }}>{poem}</Text>
             <View style={styles.tnlLogoBox}>
               <ImageBackground source={require(`../assets/logo.jpg`)} style={[styles.logoimg, styles.tnlLogo]} />
             </View>

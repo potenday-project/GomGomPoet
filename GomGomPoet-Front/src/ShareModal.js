@@ -21,7 +21,7 @@ const CircleButton = ({ color, onPress }) => (
 );
 
 
-const ShareModal = ({ isVisible, onClose, poem, randomIndex }) => {
+const ShareModal = ({ isVisible, onClose, poem, randomIndex, color, setColor }) => {
   const colors = ['#5adbbd', '#fba465', '#9b6aca', '#ec6c6e', '#f5aac3', '#6ec7e0', '#e86363']; // 색상 값 배열
 
   return (
@@ -53,7 +53,7 @@ const ShareModal = ({ isVisible, onClose, poem, randomIndex }) => {
                   style={{ width: '100%', height: '100%', alignItems: 'center', justifyContent: 'center' }}
                   // resizeMode="contain"
                 >
-                  <Text style={styles.shareImageText}>{poem}</Text>
+                  <Text style={[styles.shareImageText, { color }]}>{poem}</Text>
                 </ImageBackground>
             </View>
           </View>
@@ -61,7 +61,7 @@ const ShareModal = ({ isVisible, onClose, poem, randomIndex }) => {
           <View style={[styles.containerCenter, { marginTop: 10 }]}>
             <View style={{ flexDirection: "row" }}>
              {colors.map((color, index) => (
-                <CircleButton key={index.toString()} color={color} onPress={() => console.log('Pressed', color)} />
+                <CircleButton key={index.toString()} color={color} onPress={() => setColor(color)} />
               ))}
             </View>
           </View>
