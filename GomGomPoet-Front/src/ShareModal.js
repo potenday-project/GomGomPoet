@@ -48,7 +48,7 @@ const ShareModal = ({ isVisible, onClose, poem, randomIndex }) => {
         <ScrollView style={[styles.scrollView, {backgroundColor: 'white'}]}>
         <View sylte={styles.containerCenterMiddle} >
           <View style={{alignItems: "center", justifyContent: "center", height: '70%'}}>
-            <View style={{alignItems: 'center'}}>
+            <View style={{alignItems: 'center', width: '300px', minHeight: '300px'}}>
                 <ImageBackground
                   source={require(`../assets/tnl_img/${randomIndex}.jpg`)} // 실제 이미지 경로로 변경하세요.
                   style={{ width: '100%', height: '100%', alignItems: 'center', justifyContent: 'center' }}
@@ -72,12 +72,12 @@ const ShareModal = ({ isVisible, onClose, poem, randomIndex }) => {
               <TouchableOpacity
                 style={[styles.button, { width: 80 }]}
               >
-                <Text style={styles.buttonText}>저장하기</Text>
+                <Text style={styles.buttonText}>공유하기</Text>
               </TouchableOpacity>
               <TouchableOpacity
                 style={[styles.button, { width: 80 }]}
               >
-                <Text style={styles.buttonText}>공유하기</Text>
+                <Text style={styles.buttonText}>자랑하기</Text>
               </TouchableOpacity>
             </View>
           </View>

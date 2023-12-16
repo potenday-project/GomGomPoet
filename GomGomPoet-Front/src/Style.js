@@ -47,6 +47,7 @@ export const styles = StyleSheet.create({
     backgroundColor: "white",
     paddingHorizontal: 20,
     paddingTop: 10,
+    paddingBottom: 10,
     flexDirection: "row", // 가로로 요소를 나열
     justifyContent: "space-between",
   },
@@ -192,12 +193,13 @@ export const styles = StyleSheet.create({
     fontSize: 18, // 텍스트 크기를 설정
     fontWeight: 'bold', // 글꼴 두께 설정
     backgroundColor: 'rgba(0, 0, 0, 0.1)', // 텍스트 배경색 설정
-    padding: 100, // 텍스트 주변 패딩 설정
+    // padding: 100, // 텍스트 주변 패딩 설정
+    padding: '30px',
+    paddingBottom: '60px'
   },
   scrollView: {
     flex: 1, // 스크롤 뷰가 모달의 나머지 공간을 채우도록 함
   },
-
   circleButton: {
     width: 40, // 원하는 크기로 조절
     height: 40, // 원하는 크기로 조절
