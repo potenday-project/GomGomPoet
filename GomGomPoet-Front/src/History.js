@@ -21,6 +21,10 @@ export default ({ navigation }) => {
 
   const roundBoxWidth = (windowWidth * roundBoxWidthPercentage) / 100;
 
+  const handlePressDetailBtn = (data) => {
+    navigation.navigate('Comfort', data);
+  }
+
   useEffect(() => {
     fetch('/history')
       .then(res => res.json())
@@ -63,7 +67,7 @@ export default ({ navigation }) => {
                     <Text style={[styles.description, {width: '170px', textOverflow: 'ellipsis', whiteSpace: 'nowrap', overflow: 'hidden'}]}>{item.input}</Text>
                   </View>
                   <View style={styles.buttonContainer}>
-                    <TouchableOpacity style={[styles.button, { position: 'relative', right: '40px' }]}>
+                    <TouchableOpacity style={[styles.button, { position: 'relative', right: '40px' }]} onPress={() => handlePressDetailBtn(item)}>
                       <Text>상세보기</Text>
                     </TouchableOpacity>
                   </View>
