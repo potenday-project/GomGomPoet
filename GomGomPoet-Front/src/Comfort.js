@@ -122,7 +122,9 @@ export default ({ route }) => {
         </View>
 
         <View style={[styles.answerTxt, styles.box]}>
-          <Text style={[styles.title, styles.answerTitle]}>시</Text>
+          <Text style={[styles.title, styles.answerTitle]}>
+            {type === 'poem' ? '시' : 'N행시'}
+          </Text>
           <Text>{poem}</Text>
         </View>
 
