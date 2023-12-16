@@ -178,7 +178,7 @@ const styles = StyleSheet.create({
     backgroundSize: '80px 80px'
   },
   logo: {
-    width: '200px',
+    width: '260px',
     height: '70px',
     margin: 'auto',
     marginTop: '10px',

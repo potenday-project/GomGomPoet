@@ -221,7 +221,7 @@ export const styles = StyleSheet.create({
   },
 
   logoImageContainer: {
-    width: 200,
+    width: 260,
     height: 70,
     justifyContent: 'center'
   },
