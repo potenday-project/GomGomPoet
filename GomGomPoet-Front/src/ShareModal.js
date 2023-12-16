@@ -50,7 +50,7 @@ const ShareModal = ({ isVisible, onClose }) => {
           <View style={{alignItems: "center", justifyContent: "center", height: '70%'}}>
             <View style={{alignItems: 'center'}}>
                 <ImageBackground
-                  source={require("../assets/bk_img/1.jpg")} // 실제 이미지 경로로 변경하세요.
+                  source={require("../assets/tnl_img/1.jpg")} // 실제 이미지 경로로 변경하세요.
                   style={{ width: '100%', height: '100%', alignItems: 'center', justifyContent: 'center' }}
                   // resizeMode="contain"
                 >
