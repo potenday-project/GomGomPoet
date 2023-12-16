@@ -14,11 +14,15 @@ let letter = '안녕. 먼저, 용기를 내어 그 마음을 표현한 너에게
 let IMAGE_COUNT = 79;
 
 export default ({ route, navigation }) => {
-  let { input, type } = route.params;
-  let [randomIndex, setRandomIndex] = useState(1);
-  let [poem, setPoem] = useState('');
-  let [letter, setLetter] = useState('');
-  let [color, setColor] = useState('#5adbbd');
+  let { type, input } = route.params;
+  let _poem = route.params.poem;
+  let _letter = route.params.letter;
+  let _image = route.params.image;
+  let _color = route.params.color;
+  let [randomIndex, setRandomIndex] = useState(_image || 1);
+  let [poem, setPoem] = useState(_poem || '');
+  let [letter, setLetter] = useState(_letter || '');
+  let [color, setColor] = useState(_color || '#5adbbd');
   const [isModalVisible, setIsModalVisible] = useState(false);
   const viewShotRef = useRef(null);
 
@@ -61,6 +65,9 @@ export default ({ route, navigation }) => {
   };
 
   useEffect(() => {
+    if (_poem) {
+        return;
+    }
     setRandomIndex(Math.floor(Math.random() * (IMAGE_COUNT - 1)) + 1);
     let headers = {
       'Connection': 'keep-alive',
