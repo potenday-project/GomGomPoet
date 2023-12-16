@@ -98,13 +98,13 @@ const ShareModal = ({ isVisible, onClose, poem, randomIndex, color, setColor, sh
                 style={[styles.button, { width: 100, marginRight: 10 }]}
                 onPress={shareImage}
               >
-                <Text style={styles.buttonText}>공유하기</Text>
+                <Text style={[styles.buttonText, styles.defaultFont]}>공유하기</Text>
               </TouchableOpacity>
               <TouchableOpacity
                 style={[styles.button, { width: 100 }]}
                 onPress={shareHistory}
               >
-                <Text style={styles.buttonText}>자랑하기</Text>
+                <Text style={[styles.buttonText, styles.defaultFont]}>자랑하기</Text>
               </TouchableOpacity>
             </View>
           </View>
