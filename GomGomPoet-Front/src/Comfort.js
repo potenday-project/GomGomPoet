@@ -237,13 +237,15 @@ const styles = StyleSheet.create({
   },
   tnlLogoBox: {
     width: '270px',
-    height: '50px',
+    height: '25px',
+    marginBottom: '3px',
+    marginRight: '3px',
     position: 'absolute',
     bottom: 0,
     alignItems: 'flex-end'
   },
   tnlLogo: {
-    width: '100px',
+    width: '95px',
   },
   myQuestionBox: {
     padding: '15px',
