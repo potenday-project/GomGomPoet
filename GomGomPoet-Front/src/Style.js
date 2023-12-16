@@ -196,8 +196,9 @@ export const styles = StyleSheet.create({
     color: 'white', // 텍스트 색상을 설정
     fontSize: 18, // 텍스트 크기를 설정
     fontWeight: 'bold', // 글꼴 두께 설정
-    backgroundColor: 'rgba(0, 0, 0, 0.1)', // 텍스트 배경색 설정
+    // backgroundColor: 'rgba(0, 0, 0, 0.1)', // 텍스트 배경색 설정
     // padding: 100, // 텍스트 주변 패딩 설정
+    minHeight: '500px',
     padding: '30px',
     paddingBottom: '100px'
   },
