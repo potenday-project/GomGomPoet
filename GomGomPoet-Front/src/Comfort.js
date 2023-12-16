@@ -29,7 +29,7 @@ export default ({ route }) => {
 
       // 이미지를 캡처한 후 일정 시간을 기다립니다 (비동기 처리가 완료되기를 기다립니다)
       await new Promise(resolve => setTimeout(resolve, 1000));
-      
+
       const blob = await (await fetch(uri)).blob();
       const file = new File([blob], 'fileName.png', { type: blob.type });
       navigator.share({
@@ -92,26 +92,27 @@ export default ({ route }) => {
   }, []);
 
   return (
-    <ImageBackground style={styles.container}
-      source={require(`../assets/bk-img.jpg`)}
-    >
+    <ImageBackground style={styles.container}>
       <ScrollView>
         <View style={styles.logo}>
           <ImageBackground source={require(`../assets/logo.jpg`)} style={styles.logoimg} />
         </View>
-        <ViewShot ref={viewShotRef} style={styles.box} options={{format: 'png', quality: 0.9}}>
-          <ImageBackground source={require(`../assets/tnl_img/${randomIndex}.jpg`)} resizeMode='cover' style={styles.thumbnail}>
+        <ViewShot ref={viewShotRef} style={styles.box} options={{ format: 'png', quality: 0.9 }}>
+          <ImageBackground source={require(`../assets/tnl_img/${randomIndex}.jpg`)} resizeMode='cover'
+            style={[styles.thumbnail, { position: 'relative' }]}>
             <Text>{poem}</Text>
-
-            {/* 이미지 공유 버튼 추가 */}
-            <TouchableOpacity onPress={shareImage} style={styles.tnlBtnClk}>
-              <Text style={styles.tnlBtnTxt}>이미지 공유하기</Text>
-            </TouchableOpacity>
-
-            <StatusBar style='auto' />
-
+            <View style={styles.tnlLogoBox}>
+              <ImageBackground source={require(`../assets/logo.jpg`)} style={[styles.logoimg, styles.tnlLogo]} />
+            </View>
           </ImageBackground>
         </ViewShot>
+
+
+
+        {/* 이미지 공유 버튼 추가 */}
+        <TouchableOpacity onPress={shareImage} style={styles.tnlBtnClk}>
+          <Text style={styles.tnlBtnTxt}>이미지 공유하기</Text>
+        </TouchableOpacity>
 
         <View style={styles.myQuestion}>
           <View style={[styles.box, styles.myQuestionBox]}>
@@ -142,14 +143,10 @@ export default ({ route }) => {
 
 const styles = StyleSheet.create({
   container: {
-    // backgroundColor: 'rgb(191, 225, 192)',
-    // backgroundImage: 'radial-gradient(rgb(127 197 129) 25%, transparent 0), radial-gradient(rgb(127 197 129) 25%, transparent 0)',
-    // backgroundPosition: '0 0, 40px 40px',
-    // backgroundSize: '80px 80px'
-    flex: 1,
-    resizeMode: 'cover', // 이미지 크기에 맞게 조절
-    justifyContent: 'center',
-    backgroundAttachment: 'fixed'
+    backgroundColor: 'rgb(191, 225, 192)',
+    backgroundImage: 'radial-gradient(rgb(127 197 129) 25%, transparent 0), radial-gradient(rgb(127 197 129) 25%, transparent 0)',
+    backgroundPosition: '0 0, 40px 40px',
+    backgroundSize: '80px 80px'
   },
   logo: {
     width: '200px',
@@ -183,10 +180,12 @@ const styles = StyleSheet.create({
   thumbnail: {
     margin: 'auto',
     width: '270px',
-    height: '300px',
+    minHeight: '300px',
     textAlign: 'center',
     alignItems: 'center',
-    lineHeight: '290px'
+    lineHeight: '290px',
+    padding: '30px',
+    paddingBottom: '60px'
   },
   thumbnailImage: {
     width: '100%',  // 이미지를 가득 채우도록 설정
@@ -195,17 +194,27 @@ const styles = StyleSheet.create({
     borderRadius: 7,
   },
   tnlBtnClk: {
-    position: 'relative',
-    top: '310px',
+    margin: 'auto',
+    marginTop: '15px',
     width: '120px',
   },
   tnlBtnTxt: {
     textAlign: 'center',
-    backgroundColor: 'rgb(143, 191, 131)',
+    backgroundColor: '#612eb9',
     borderRadius: '7px',
     color: 'white',
     height: '30px',
     lineHeight: '30px'
+  },
+  tnlLogoBox: {
+    width: '270px',
+    height: '50px',
+    position: 'absolute',
+    bottom: 0,
+    alignItems: 'flex-end'
+  },
+  tnlLogo: {
+    width: '100px',
   },
   myQuestionBox: {
     padding: '15px',
