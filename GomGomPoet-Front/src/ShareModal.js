@@ -47,8 +47,8 @@ const ShareModal = ({ isVisible, onClose, poem, randomIndex }) => {
 
         <ScrollView style={[styles.scrollView, {backgroundColor: 'white'}]}>
         <View sylte={styles.containerCenterMiddle} >
-          <View style={{alignItems: "center", justifyContent: "center", height: '70%'}}>
-            <View style={{alignItems: 'center', width: '300px', minHeight: '300px'}}>
+          <View style={{alignItems: "center", justifyContent: "center"}}>
+            <View style={{alignItems: 'center', width: '100%'}}>
                 <ImageBackground
                   source={require(`../assets/tnl_img/${randomIndex}.jpg`)} // 실제 이미지 경로로 변경하세요.
                   style={{ width: '100%', height: '100%', alignItems: 'center', justifyContent: 'center' }}
