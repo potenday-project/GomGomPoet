@@ -11,7 +11,7 @@ import {
   ScrollView,
 } from "react-native";
 import { styles } from "./Style";
-
+import ViewShot from 'react-native-view-shot';
 
 const CircleButton = ({ color, onPress }) => (
   <TouchableOpacity
@@ -23,6 +23,27 @@ const CircleButton = ({ color, onPress }) => (
 
 const ShareModal = ({ isVisible, onClose, poem, randomIndex, color, setColor }) => {
   const colors = ['#5adbbd', '#fba465', '#9b6aca', '#ec6c6e', '#f5aac3', '#6ec7e0', '#e86363']; // 색상 값 배열
+  const viewShotRef = useRef(null);
+
+  const shareImage = async () => {
+    try {
+      // 이미지를 캡처합니다
+      const uri = await viewShotRef.current.capture();
+
+      // 이미지를 캡처한 후 일정 시간을 기다립니다 (비동기 처리가 완료되기를 기다립니다)
+      await new Promise(resolve => setTimeout(resolve, 1000));
+
+      const blob = await (await fetch(uri)).blob();
+      const file = new File([blob], 'fileName.png', { type: blob.type });
+      navigator.share({
+        title: 'Hello',
+        text: 'Check out this image!',
+        files: [file]
+      });
+    } catch (error) {
+      console.error('이미지 공유 중 오류 발생:', error);
+    }
+  };
 
   return (
     <Modal
@@ -46,7 +67,7 @@ const ShareModal = ({ isVisible, onClose, poem, randomIndex, color, setColor }) 
 
         <ScrollView style={[styles.scrollView, {backgroundColor: 'white'}]}>
         <View sylte={styles.containerCenterMiddle} >
-          <View style={{alignItems: "center", justifyContent: "center"}}>
+          <ViewShot ref={viewShotRef} style={{alignItems: "center", justifyContent: "center"}} options={{ format: 'png', quality: 0.9 }}>
             <View style={{alignItems: 'center', width: '100%'}}>
                 <ImageBackground
                   source={require(`../assets/tnl_img/${randomIndex}.jpg`)} // 실제 이미지 경로로 변경하세요.
@@ -56,7 +77,7 @@ const ShareModal = ({ isVisible, onClose, poem, randomIndex, color, setColor }) 
                   <Text style={[styles.shareImageText, { color }]}>{poem}</Text>
                 </ImageBackground>
             </View>
-          </View>
+          </ViewShot>
 
           <View style={[styles.containerCenter, { marginTop: 10 }]}>
             <View style={{ flexDirection: "row" }}>
@@ -70,6 +91,7 @@ const ShareModal = ({ isVisible, onClose, poem, randomIndex, color, setColor }) 
             <View style={{ flexDirection: "row" }}>
               <TouchableOpacity
                 style={[styles.button, { width: 100, marginRight: 10 }]}
+                onPress={shareImage}
               >
                 <Text style={styles.buttonText}>공유하기</Text>
               </TouchableOpacity>
