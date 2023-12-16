@@ -25,10 +25,12 @@ export default ({ navigation }) => {
         style={styles.safeAreaContainer}
         edges={["top", "right", "bottom", "left"]}
       >
+        {/*
         <View style={styles.header}>
           <Text style={styles.headerText}>히스토리</Text>
         </View>
         <View style={styles.headerSeparator}></View>
+  */}
         <View style={styles.containerCenterMiddle}>
           <FlatList
             data={data}
