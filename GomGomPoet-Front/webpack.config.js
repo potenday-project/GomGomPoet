@@ -2,7 +2,8 @@ const createExpoWebpackConfigAsync = require('@expo/webpack-config');
 
 module.exports = async function(env, argv) {
     const config = await createExpoWebpackConfigAsync(env, argv);
-    config.devServer= {
+    config.ignoreWarnings = [/Failed to parse source map/];
+    config.devServer = {
         proxy: {
             '/': {
                 target: 'http://localhost:3000',
