@@ -199,7 +199,14 @@ export const styles = StyleSheet.create({
     backgroundColor: 'rgba(0, 0, 0, 0.1)', // 텍스트 배경색 설정
     // padding: 100, // 텍스트 주변 패딩 설정
     padding: '30px',
-    paddingBottom: '60px'
+    paddingBottom: '100px'
+  },
+  shareLogoBox: {
+    width: '150px',
+    height: '75px',
+    position: 'absolute',
+    bottom: 0,
+    right: 0
   },
   scrollView: {
     flex: 1, // 스크롤 뷰가 모달의 나머지 공간을 채우도록 함

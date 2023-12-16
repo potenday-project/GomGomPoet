@@ -52,36 +52,41 @@ const ShareModal = ({ isVisible, onClose, poem, randomIndex, color, setColor, sh
       visible={isVisible}
       onRequestClose={onClose}
     >
-        <View style={[styles.header, {justifyContent: 'flex-end'}]}>
-          {/* <Text style={styles.headerText}>공유하기</Text> */}
-            <TouchableOpacity
-              onPress={onClose}
-            >
-              <Image
-                source={require("../assets/close.png")} // 이미지 경로는 실제 이미지에 맞게 변경하세요.
-                style={styles.helpImage}
-              />
+      <View style={[styles.header, { justifyContent: 'flex-end' }]}>
+        {/* <Text style={styles.headerText}>공유하기</Text> */}
+        <TouchableOpacity
+          onPress={onClose}
+        >
+          <Image
+            source={require("../assets/close.png")} // 이미지 경로는 실제 이미지에 맞게 변경하세요.
+            style={styles.helpImage}
+          />
 
-              </TouchableOpacity>
-        </View>
+        </TouchableOpacity>
+      </View>
 
-        <ScrollView style={[styles.scrollView, {backgroundColor: 'white'}]}>
+      <ScrollView style={[styles.scrollView, { backgroundColor: 'white' }]}>
         <View sylte={styles.containerCenterMiddle} >
-          <ViewShot ref={viewShotRef} style={{alignItems: "center", justifyContent: "center"}} options={{ format: 'png', quality: 0.9 }}>
-            <View style={{alignItems: 'center', width: '100%'}}>
-                <ImageBackground
-                  source={require(`../assets/tnl_img/${randomIndex}.jpg`)} // 실제 이미지 경로로 변경하세요.
-                  style={{ width: '100%', height: '100%', alignItems: 'center', justifyContent: 'center' }}
-                  // resizeMode="contain"
-                >
-                  <Text style={[styles.shareImageText, { color }]}>{poem}</Text>
-                </ImageBackground>
+          <ViewShot ref={viewShotRef} style={{ alignItems: "center", justifyContent: "center" }} options={{ format: 'png', quality: 0.9 }}>
+            <View style={{ alignItems: 'center', width: '100%' }}>
+              <ImageBackground
+                source={require(`../assets/tnl_img/${randomIndex}.jpg`)} // 실제 이미지 경로로 변경하세요.
+                style={{ width: '100%', height: '100%', alignItems: 'center', justifyContent: 'center' }}
+              // resizeMode="contain"
+              >
+                <Text style={[styles.shareImageText, { color }]}>{poem}</Text>
+
+                <View style={styles.shareLogoBox}>
+                  <ImageBackground source={require(`../assets/logo.jpg`)} style={styles.logoImage} />
+                </View>
+
+              </ImageBackground>
             </View>
           </ViewShot>
 
           <View style={[styles.containerCenter, { marginTop: 10 }]}>
             <View style={{ flexDirection: "row" }}>
-             {colors.map((color, index) => (
+              {colors.map((color, index) => (
                 <CircleButton key={index.toString()} color={color} onPress={() => setColor(color)} />
               ))}
             </View>
@@ -105,7 +110,7 @@ const ShareModal = ({ isVisible, onClose, poem, randomIndex, color, setColor, sh
           </View>
 
         </View>
-        </ScrollView>
+      </ScrollView>
 
     </Modal>
   );
