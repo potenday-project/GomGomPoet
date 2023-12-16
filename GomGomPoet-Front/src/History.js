@@ -63,12 +63,12 @@ export default ({ navigation }) => {
                     <Image source={require(`../assets/tnl_img/${item.image}.jpg`)} style={styles.userImage} />
                   </View>
                   <View style={styles.textContainer}>
-                    <Text style={styles.title}>{item.date.replace(/T.+/, '')}</Text>
-                    <Text style={[styles.description, {width: '170px', textOverflow: 'ellipsis', whiteSpace: 'nowrap', overflow: 'hidden'}]}>{item.input}</Text>
+                    <Text style={[styles.title, styles.defaultFont]}>{item.date.replace(/T.+/, '')}</Text>
+                    <Text style={[styles.description, {width: '170px', textOverflow: 'ellipsis', whiteSpace: 'nowrap', overflow: 'hidden'}, styles.defaultFont]}>{item.input}</Text>
                   </View>
                   <View style={styles.buttonContainer}>
                     <TouchableOpacity style={[styles.button, { position: 'relative', right: '40px' }]} onPress={() => handlePressDetailBtn(item)}>
-                      <Text>상세보기</Text>
+                      <Text style={styles.defaultFont}>상세보기</Text>
                     </TouchableOpacity>
                   </View>
                 </View>
