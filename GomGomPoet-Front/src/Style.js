@@ -232,5 +232,8 @@ export const styles = StyleSheet.create({
   },
   defaultFont: {
     fontFamily: 'SKYBORI'
+  },
+  thumbFont: {
+    fontFamily: 'YeongdeokSnowCrab'
   }
 });

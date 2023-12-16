@@ -74,7 +74,7 @@ const ShareModal = ({ isVisible, onClose, poem, randomIndex, color, setColor, sh
                 style={{ width: '100%', height: '100%', alignItems: 'center', justifyContent: 'center' }}
               // resizeMode="contain"
               >
-                <Text style={[styles.shareImageText, { color }]}>{poem}</Text>
+                <Text style={[styles.shareImageText, { color }, styles.thumbFont]}>{poem}</Text>
 
                 <View style={styles.shareLogoBox}>
                   <ImageBackground source={require(`../assets/logo.jpg`)} style={styles.logoImage} />
