@@ -4,6 +4,7 @@ import { StyleSheet, Text, View, ScrollView, ImageBackground, TouchableOpacity }
 import { fetchEventSource } from '@microsoft/fetch-event-source';
 import ShareModal from "./ShareModal";
 import ViewShot from 'react-native-view-shot';
+import Tab from "./Tab";
 
 let question = '학교에서 같은 반 남자아이를 좋아하게 됐는데 마음을 전하고 싶지만 용기가 나지 않아..'
 
@@ -51,12 +52,12 @@ export default ({ route, navigation }) => {
 
   const shareHistory = () => {
     fetch('/history', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ type, input, poem, letter, image: randomIndex, color })
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ type, input, poem, letter, image: randomIndex, color })
     }).then(res => {
-        setIsModalVisible(false);
-        navigation.navigate('History');
+      setIsModalVisible(false);
+      navigation.navigate('History');
     })
   }
 
@@ -66,7 +67,7 @@ export default ({ route, navigation }) => {
 
   useEffect(() => {
     if (_poem) {
-        return;
+      return;
     }
     setRandomIndex(Math.floor(Math.random() * (IMAGE_COUNT - 1)) + 1);
     let headers = {
@@ -114,7 +115,7 @@ export default ({ route, navigation }) => {
 
   return (
     <ImageBackground style={styles.container}>
-      <ShareModal isVisible={isModalVisible} onClose={() => setIsModalVisible(false)} poem={poem} randomIndex={randomIndex} color={color} setColor={setColor} shareHistory={shareHistory}/>
+      <ShareModal isVisible={isModalVisible} onClose={() => setIsModalVisible(false)} poem={poem} randomIndex={randomIndex} color={color} setColor={setColor} shareHistory={shareHistory} />
       <ScrollView>
         <View style={styles.logo}>
           <ImageBackground source={require(`../assets/logo.jpg`)} style={styles.logoimg} />
@@ -161,6 +162,9 @@ export default ({ route, navigation }) => {
 
         <StatusBar style='auto' />
       </ScrollView>
+      <View style={{ position: 'sticky', bottom: 0}}>
+        <Tab navigation={navigation} idx={0} />
+      </View>
     </ImageBackground>
   );
 }
