@@ -82,12 +82,16 @@ export const styles = StyleSheet.create({
     borderRadius: 100,
   },
   // History.js
-  itemList: {
-    justifyContent: "space-between", // 가로 정렬을 시작으로 설정
+  totalListbox: {
+    width: '100%',
+    height: '100%',
     backgroundColor: 'rgb(191, 225, 192)',
     backgroundImage: 'radial-gradient(rgb(127 197 129) 25%, transparent 0), radial-gradient(rgb(127 197 129) 25%, transparent 0)',
     backgroundPosition: '0 0, 40px 40px',
-    backgroundSize: '80px 80px'
+    backgroundSize: '80px 80px',
+  },
+  itemList: {
+    justifyContent: "space-between", // 가로 정렬을 시작으로 설정
   },
   itemContainer: {
     marginVertical: 8,

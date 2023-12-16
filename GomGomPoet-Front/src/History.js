@@ -23,8 +23,8 @@ export default ({ navigation }) => {
 
   useEffect(() => {
     fetch('/history')
-    .then(res => res.json())
-    .then(res => setData(res))
+      .then(res => res.json())
+      .then(res => setData(res))
   }, []);
 
   return (
@@ -43,6 +43,7 @@ export default ({ navigation }) => {
           <FlatList
             data={data}
             height="100%"
+            style={styles.totalListbox}
             contentContainerStyle={styles.itemList}
             showsVerticalScrollIndicator={false}
             keyExtractor={(item, index) => index.toString()}
@@ -59,10 +60,10 @@ export default ({ navigation }) => {
                   </View>
                   <View style={styles.textContainer}>
                     <Text style={styles.title}>{item.date.replace(/T.+/, '')}</Text>
-                    <Text style={styles.description}>{item.input}</Text>
+                    <Text style={[styles.description, {width: '170px', textOverflow: 'ellipsis', whiteSpace: 'nowrap', overflow: 'hidden'}]}>{item.input}</Text>
                   </View>
                   <View style={styles.buttonContainer}>
-                    <TouchableOpacity style={styles.button}>
+                    <TouchableOpacity style={[styles.button, { position: 'relative', right: '40px' }]}>
                       <Text>상세보기</Text>
                     </TouchableOpacity>
                   </View>
@@ -72,7 +73,9 @@ export default ({ navigation }) => {
           />
         </View>
       </SafeAreaView>
-      <Tab navigation={navigation} idx={2} />
+      <View style={{marginTop: -10}}>
+        <Tab navigation={navigation} idx={2} />
+      </View>
     </View>
   );
 };
