@@ -34,6 +34,7 @@ const getStream = async (res, body) => {
 
 const replaceParams = (body, params) => {
     body = JSON.stringify(body);
+    params.input = params.input.replaceAll('\n', '');
     for (let param in params) {
         body = body.replace(`{${param}}`, params[param]);
     }
