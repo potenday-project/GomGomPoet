@@ -77,7 +77,7 @@ const ShareModal = ({ isVisible, onClose, poem, randomIndex, color, setColor, sh
                 <Text style={[styles.shareImageText, { color }, styles.thumbFont]}>{poem}</Text>
 
                 <View style={styles.shareLogoBox}>
-                  <ImageBackground source={require(`../assets/logo.png`)} style={styles.logoImage} />
+                  <ImageBackground source={require(`../assets/new-gom-logo.png`)} style={styles.logoImage} />
                 </View>
 
               </ImageBackground>
