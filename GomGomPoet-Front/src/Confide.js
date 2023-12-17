@@ -23,7 +23,7 @@ export default ({ navigation }) => {
   };
 
   return (
-    <ImageBackground style={styles.view} source={require(`../assets/bk-img.jpg`)}>
+    <ImageBackground style={styles.view} source={require(`../assets/new-bk-img.jpg`)}>
       <SafeAreaView
         style={styles.safeAreaContainer}
         edges={["top", "right", "bottom", "left"]}
@@ -41,31 +41,34 @@ export default ({ navigation }) => {
         </View>
         <View style={styles.headerSeparator}></View>
         */}
-        <View style={styles.containerCenterMiddle}>
-          <View style={[styles.logoImageContainer, { marginBottom: 10 }]}>
+        <View style={styles.logoBox}>
+          <View style={[styles.logoImageContainer]}>
             <Image
-              source={require("../assets/logo.png")}
+              source={require("../assets/new-gom-logo.png")}
               style={styles.logoImage}
             />
           </View>
         </View>
+
+        <View style={{ marginTop: 10 }}>
+          <Text style={[styles.text, { textAlign: "center" }, styles.defaultFont]}>
+            고민을 적어주시면
+          </Text>
+          <Text style={[styles.text, { textAlign: "center" }, styles.defaultFont]}>
+            시와 N행시로 고민을 해결해드립니다.
+          </Text>
+        </View>
+
         <View style={styles.containerCenterMiddle}>
           <View style={[styles.gomgomImageContainer, { marginTop: 10 }]}>
             <Image
-              source={require("../assets/icon1.png")}
+              source={require("../assets/new-gom-img.png")}
               style={styles.gomgomImage}
             />
           </View>
         </View>
-        <View style={[styles.containerCenterMiddle, { marginTop: 10 }]}>
-          <Text style={[styles.text, { width: "80%", textAlign: "center" }, styles.defaultFont]}>
-            고민을 적어주시면
-          </Text>
-          <Text style={[styles.text, { width: "80%", textAlign: "center" }, styles.defaultFont]}>
-            시와 N행시로 고민을 해결해드립니다.
-          </Text>
-        </View>
-        <View style={[styles.containerCenterMiddle, { marginTop: 10 }]}>
+
+        <View style={[styles.containerCenterMiddle, { marginTop: 30 }]}>
           <TextInput
             style={[styles.input, styles.defaultFont]}
             placeholder="오늘의 고민을 입력해주세요."
@@ -75,19 +78,19 @@ export default ({ navigation }) => {
         </View>
 
         {/* 버튼 영역 시작 */}
-        <View style={[styles.containerCenter, { marginTop: 10 }]}>
+        <View style={[styles.containerCenter, { marginBottom: 20 }]}>
           <View style={{ flexDirection: "row" }}>
             <TouchableOpacity
-              style={[styles.button, { width: 80 }]}
-              onPress={() => handlePressBtn('poem')}
-            >
-              <Text style={[styles.buttonText, styles.defaultFont]}>시</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={[styles.button, { width: 80 }]}
+              style={[styles.button, { width: 100, backgroundColor: '#e4eeff' }]}
               onPress={() => handlePressBtn('acrosticpoem')}
             >
               <Text style={[styles.buttonText, styles.defaultFont]}>N행시</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={[styles.button, { width: 100, backgroundColor: '#ffe4f4' }]}
+              onPress={() => handlePressBtn('poem')}
+            >
+              <Text style={[styles.buttonText, styles.defaultFont]}>시</Text>
             </TouchableOpacity>
           </View>
         </View>

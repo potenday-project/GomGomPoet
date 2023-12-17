@@ -12,7 +12,7 @@ export const styles = StyleSheet.create({
   containerCenterMiddle: {
     flex: 1,
     alignItems: "center", // 수평 중앙 정렬
-    justifyContent: "center", // 수직 중앙 정렬
+    justifyContent: "center",
   },
   // 가운데 정렬
   containerCenter: {
@@ -24,22 +24,21 @@ export const styles = StyleSheet.create({
     color: "#404040",
   },
   input: {
-    height: 240,
-    width: "90%",
-    marginTop: 10,
+    height: 200,
+    width: "75%",
+    marginTop: -10,
+    fontSize: '18px',
     paddingHorizontal: 8,
-    backgroundColor: "#F6FAF4",
-    borderRadius: 10,
+    backgroundColor: "#e5e7e4",
+    textAlign: 'center'
   },
   button: {
-    backgroundColor: "#0dc56c",
-    paddingVertical: 10,
+    paddingVertical: 15,
     paddingHorizontal: 20,
-    borderRadius: 5,
-    marginLeft: 5, // 버튼 사이의 간격을 설정
+    marginLeft: 10, // 버튼 사이의 간격을 설정
   },
   buttonText: {
-    color: "white",
+    color: "#756e74",
     textAlign: "center",
   },
   // 헤더
@@ -67,19 +66,19 @@ export const styles = StyleSheet.create({
     width: 24, // 적절한 크기로 조정
     height: 24, // 적절한 크기로 조정
   },
+  logoBox: {
+    alignItems: "center", // 수평 중앙 정렬
+    backgroundColor: '#e5e7e5',
+  },
   gomgomImageContainer: {
-    width: 200,
-    height: 200,
-    borderRadius: 100,
-    justifyContent: "center", // 수평 중앙 정렬
-    alignItems: "center", // 수직 중앙 정렬
+    width: 260,
+    height: 260,
   },
   gomgomImage: {
-    backgroundColor: "#FFFCCC",
     width: "100%", // 이미지를 부모 컨테이너의 크기에 맞게 조정
     height: "100%", // 이미지를 부모 컨테이너의 크기에 맞게 조정
     resizeMode: "cover",
-    borderRadius: 100,
+    marginTop: '-5px'
   },
   // History.js
   totalListbox: {
@@ -135,8 +134,8 @@ export const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     paddingHorizontal: 20,
-    backgroundColor: "#F9F9F9",
-    paddingVertical: 10,
+    backgroundColor: "#e5e7e5",
+    paddingVertical: 5,
     marginTop: 10,
     marginBottom: 0,
     borderTopColor: "#E0E0E0",
@@ -144,17 +143,18 @@ export const styles = StyleSheet.create({
   },
   tabButton: {
     flex: 1,
-    marginTop: -10,
+    // marginTop: -10,
     alignItems: "center",
     paddingVertical: 10,
-    backgroundColor: "#F9F9F9",
+    backgroundColor: "#e5e7e5",    
   },
   tabButtonText: {
+    fontSize: "20px",
     fontWeight: "bold",
-    color: "black",
+    color: "#756e74",
   },
   tabButtonTextSelected: {
-    color: "blue", // 선택된 탭의 텍스트 색
+    color: "#82e4a5", // 선택된 탭의 텍스트 색
   },
   // 모달
   modalContainer: {
@@ -222,8 +222,8 @@ export const styles = StyleSheet.create({
   },
 
   logoImageContainer: {
-    width: 260,
-    height: 70,
+    width: 200,
+    height: 80,
     justifyContent: 'center'
   },
   logoImage: {
