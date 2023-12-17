@@ -4,6 +4,7 @@ import {
   Text,
   SafeAreaView,
   Image,
+  ImageBackground,
   View,
   TouchableOpacity,
   FlatList,
@@ -43,7 +44,7 @@ export default ({ navigation }) => {
         </View>
         <View style={styles.headerSeparator}></View>
   */}
-        <View style={styles.containerCenterMiddle}>
+        <ImageBackground style={styles.containerCenterMiddle} source={require('../assets/new-bk-img.jpg')}>
           <FlatList
             data={data}
             height="100%"
@@ -75,7 +76,7 @@ export default ({ navigation }) => {
               </View>
             )}
           />
-        </View>
+        </ImageBackground>
       </SafeAreaView>
       <View style={{marginTop: -10}}>
         <Tab navigation={navigation} idx={2} />
