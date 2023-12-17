@@ -70,10 +70,11 @@ export default ({ navigation }) => {
 
         <View style={styles.containerCenterMiddle}>
           <TextInput
-            style={[styles.input, styles.defaultFont]}
+            style={[styles.input, styles.defaultFont, { paddingLeft: '20px', paddingRight: '20px', paddingTop: '10px', paddingBottom: '10px' }]}
             placeholder="오늘의 고민을 입력해주세요."
             onChangeText={(text) => setInputText(text)}
             value={inputText}
+            multiline
           />
         </View>
 
