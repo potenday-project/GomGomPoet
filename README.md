@@ -31,11 +31,25 @@
 <table align="center">
   <tbody>
     <tr>
-      <td align="center"><a href="https://github.com/lim-hyo-jeong"><img src="https://github.com/potenday-project/GomGomPoet/assets/72718565/32720259-f0ca-43d2-8a9a-661c36bffe7d" width="100px" alt=""/><br /><sub><b> 기획, 데이터, 디자인 : 임효정 </b></sub></a></td>
-      <td align="center"><a href="https://github.com/momozzing"><img src="https://github.com/potenday-project/GomGomPoet/assets/72718565/ab0b69d6-5426-49a7-8241-00d0681b33d2" width="100px" alt=""/><br /><sub><b> 기획, 데이터 : 모윤호 </b></sub></a></td>
-      <td align="center"><a href="https://github.com/jominuook"><img src="https://github.com/potenday-project/GomGomPoet/assets/72718565/64536d25-31a3-469c-9649-6e00e66da6f8" width="100px" alt=""/><br /><sub><b>BackEnd 개발 : 조민욱 </b></sub></a></td>
-      <td align="center"><a href="https://github.com/jjeong7097"><img src="https://github.com/potenday-project/GomGomPoet/assets/72718565/6cca3022-4eac-440c-8044-75083172c417" width="100px" alt=""/><br /><sub><b>FrontEnd 개발 : 이윤정 </b></sub></a></td>
-      <td align="center"><a href="https://github.com/JungwooKim9"><img src="https://github.com/potenday-project/GomGomPoet/assets/72718565/c5b24cff-4dbb-4f03-baca-11c199614a2c" width="100px" alt=""/><br /><sub><b>FrontEnd 개발 : 김정우 </b></sub></a></td>
+      <td align="center"><img src="https://github.com/potenday-project/GomGomPoet/assets/72718565/32720259-f0ca-43d2-8a9a-661c36bffe7d" width="100px" alt="임효정"/></td>
+      <td align="center"><img src="https://github.com/potenday-project/GomGomPoet/assets/72718565/ab0b69d6-5426-49a7-8241-00d0681b33d2" width="100px" alt="모윤호"/></td>
+      <td align="center"><img src="https://github.com/potenday-project/GomGomPoet/assets/72718565/64536d25-31a3-469c-9649-6e00e66da6f8" width="100px" alt="조민욱"/></td>
+      <td align="center"><img src="https://github.com/potenday-project/GomGomPoet/assets/72718565/6cca3022-4eac-440c-8044-75083172c417" width="100px" alt="이윤정"/></td>
+      <td align="center"><img src="https://github.com/potenday-project/GomGomPoet/assets/72718565/c5b24cff-4dbb-4f03-baca-11c199614a2c" width="100px" alt="김정우"/></td>
+    </tr>
+    <tr>
+      <td align="center"><sub><b> 기획, 데이터, 디자인 : 임효정 </b></sub></td>
+      <td align="center"><sub><b> 기획, 데이터 : 모윤호 </b></sub></td>
+      <td align="center"><sub><b> BackEnd 개발 : 조민욱 </b></sub></td>
+      <td align="center"><sub><b> FrontEnd 개발 : 이윤정 </b></sub></td>
+      <td align="center"><sub><b> FrontEnd 개발 : 김정우 </b></sub></td>
+    </tr>
+    <tr>
+      <td align="center"><a href="https://github.com/lim-hyo-jeong"><sub>@lim-hyo-jeong</sub></a></td>
+      <td align="center"><a href="https://github.com/momozzing"><sub>@momozzing</sub></a></td>
+      <td align="center"><a href="https://github.com/jominuook"><sub>@jominuook</sub></a></td>
+      <td align="center"><a href="https://github.com/jjeong7097"><sub>@jjeong7097</sub></a></td>
+      <td align="center"><a href="https://github.com/JungwooKim9"><sub>@JungwooKim9</sub></a></td>
     </tr>
   </tbody>
 </table>
