@@ -232,9 +232,9 @@ export const styles = StyleSheet.create({
     resizeMode: 'cover'
   },
   defaultFont: {
-    fontFamily: 'SKYBORI'
+    fontFamily: 'HakgyoansimWoojuR'
   },
   thumbFont: {
-    fontFamily: 'YeongdeokSnowCrab'
+    fontFamily: 'YeongdeokSea'
   }
 });
