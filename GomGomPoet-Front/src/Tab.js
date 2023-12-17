@@ -38,7 +38,7 @@ const TabButton = ({ label, idx, isSelected, onPress }) => {
   );
 };
 
-export default ({ navigation, idx = 0 }) => {
+export default ({ navigation, idx = 0, disabled }) => {
   const [selectedTabIdx, setSelectedTabIdx] = useState(idx);
   const handlePressButton = (_idx) => {
     switch (_idx) {
@@ -66,7 +66,11 @@ export default ({ navigation, idx = 0 }) => {
         label="고민해결"
         idx={0}
         isSelected={selectedTabIdx === 0}
-        onPress={() => handlePressButton(0)}
+        onPress={() => {
+          if (!(selectedTabIdx === 0 && disabled)) {
+            handlePressButton(0);
+          }
+        }}
       />
       {/* <TabButton
         label="Tab 2"
@@ -78,7 +82,11 @@ export default ({ navigation, idx = 0 }) => {
         label="자랑하기"
         idx={2}
         isSelected={selectedTabIdx === 2}
-        onPress={() => handlePressButton(2)}
+        onPress={() => {
+          if (!(selectedTabIdx === 2 && disabled)) {
+            handlePressButton(2);
+          }
+        }}
       />
       {/* <TabButton
         label="Tab 4"

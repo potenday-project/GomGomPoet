@@ -79,7 +79,7 @@ export default ({ navigation }) => {
         </ImageBackground>
       </SafeAreaView>
       <View style={{marginTop: -10}}>
-        <Tab navigation={navigation} idx={2} />
+        <Tab navigation={navigation} idx={2} disabled/>
       </View>
     </View>
   );
