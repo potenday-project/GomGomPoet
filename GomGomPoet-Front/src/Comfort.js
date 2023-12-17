@@ -128,18 +128,18 @@ export default ({ route, navigation }) => {
   }, [isFinished])
 
   return (
-    <ImageBackground style={styles.container}>
+    <ImageBackground style={styles.container} source={require(`../assets/new-bk-img.jpg`)}>
       <ShareModal isVisible={isModalVisible} onClose={() => setIsModalVisible(false)} poem={poem} randomIndex={randomIndex} color={color} setColor={setColor} shareHistory={shareHistory} />
       <ScrollView>
         <View style={styles.logo}>
-          <ImageBackground source={require(`../assets/logo.png`)} style={styles.logoimg} />
+          <ImageBackground source={require(`../assets/new-gom-logo.png`)} style={styles.logoimg} />
         </View>
         <ViewShot ref={viewShotRef} style={styles.box} options={{ format: 'png', quality: 0.9 }}>
           <ImageBackground source={require(`../assets/tnl_img/${randomIndex}.jpg`)} resizeMode='cover'
             style={[styles.thumbnail, { position: 'relative' }]}>
             <Text style={[{ color }, extStyles.thumbFont]}>{poem}</Text>
             <View style={styles.tnlLogoBox}>
-              <ImageBackground source={require(`../assets/logo.png`)} style={[styles.logoimg, styles.tnlLogo]} />
+              <ImageBackground source={require(`../assets/new-gom-logo.png`)} style={[styles.logoimg, styles.tnlLogo]} />
             </View>
           </ImageBackground>
         </ViewShot>
@@ -185,10 +185,10 @@ export default ({ route, navigation }) => {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: 'rgb(191, 225, 192)',
-    backgroundImage: 'radial-gradient(rgb(127 197 129) 25%, transparent 0), radial-gradient(rgb(127 197 129) 25%, transparent 0)',
-    backgroundPosition: '0 0, 40px 40px',
-    backgroundSize: '80px 80px'
+    // backgroundColor: 'rgb(191, 225, 192)',
+    // backgroundImage: 'radial-gradient(rgb(127 197 129) 25%, transparent 0), radial-gradient(rgb(127 197 129) 25%, transparent 0)',
+    // backgroundPosition: '0 0, 40px 40px',
+    // backgroundSize: '80px 80px'
   },
   logo: {
     width: '260px',
@@ -258,7 +258,7 @@ const styles = StyleSheet.create({
     alignItems: 'flex-end'
   },
   tnlLogo: {
-    width: '95px',
+    width: '100px',
   },
   myQuestionBox: {
     padding: '15px',
