@@ -25,6 +25,7 @@ export default ({ route, navigation }) => {
   let [poem, setPoem] = useState(_poem || '');
   let [letter, setLetter] = useState(_letter || '');
   let [color, setColor] = useState(_color || '#5adbbd');
+  let [isFinished, setFinished] = useState(false);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const viewShotRef = useRef(null);
 
@@ -102,6 +103,7 @@ export default ({ route, navigation }) => {
               let content = data.message.content;
               if (event.event === 'result') {
                 setLetter(content);
+                setFinished(true);
               } else {
                 setLetter(letter => letter + content);
               }
@@ -113,6 +115,17 @@ export default ({ route, navigation }) => {
       }
     });
   }, []);
+
+  useEffect(() => {
+    if (!isFinished) {
+        return;
+    }
+    fetch('/logging', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ type, input: input.replaceAll('\n', '\\n'), poem: poem.replaceAll('\n', '\\n'), letter: letter.replaceAll('\n', '\\n'), image: randomIndex, color })
+    })
+  }, [isFinished])
 
   return (
     <ImageBackground style={styles.container}>
