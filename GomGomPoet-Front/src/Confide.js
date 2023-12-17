@@ -81,13 +81,13 @@ export default ({ navigation }) => {
         <View style={[styles.containerCenter, { marginBottom: 20 }]}>
           <View style={{ flexDirection: "row" }}>
             <TouchableOpacity
-              style={[styles.button, { width: 100, backgroundColor: '#e4eeff' }]}
+              style={[styles.button, { width: 100, backgroundColor: '#e4eeff', borderRadius: '5px' }]}
               onPress={() => handlePressBtn('acrosticpoem')}
             >
               <Text style={[styles.buttonText, styles.defaultFont]}>N행시</Text>
             </TouchableOpacity>
             <TouchableOpacity
-              style={[styles.button, { width: 100, backgroundColor: '#ffe4f4' }]}
+              style={[styles.button, { width: 100, backgroundColor: '#ffe4f4', borderRadius: '5px' }]}
               onPress={() => handlePressBtn('poem')}
             >
               <Text style={[styles.buttonText, styles.defaultFont]}>시</Text>
