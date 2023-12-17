@@ -86,7 +86,19 @@ app.get('/history', (req, res) => {
 app.post('/history', (req, res) => {
     let date = new Date();
     req.body.date = date;
-    fs.writeFile('./history/' + createFileName(date), JSON.stringify(req.body), 'utf8', err => {
+    fs.writeFile('./history/' + createFileName(date), JSON.stringify(req.body, null, 2), err => {
+        if (err) {
+            console.error(err);
+            return res.status(500).send(err);
+        }
+        return res.send('OK');
+    })
+})
+
+app.post('/logging', (req, res) => {
+    let date = new Date();
+    req.body.date = date;
+    fs.writeFile('./logs/' + createFileName(date), JSON.stringify(req.body, null, 2), err => {
         if (err) {
             console.error(err);
             return res.status(500).send(err);
