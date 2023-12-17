@@ -24,7 +24,7 @@ export default ({ route, navigation }) => {
   let [randomIndex, setRandomIndex] = useState(_image || 1);
   let [poem, setPoem] = useState(_poem || '');
   let [letter, setLetter] = useState(_letter || '');
-  let [color, setColor] = useState(_color || '#5adbbd');
+  let [color, setColor] = useState(_color || '#000000');
   const [isModalVisible, setIsModalVisible] = useState(false);
   const viewShotRef = useRef(null);
 

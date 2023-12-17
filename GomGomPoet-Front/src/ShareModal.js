@@ -22,7 +22,7 @@ const CircleButton = ({ color, onPress }) => (
 
 
 const ShareModal = ({ isVisible, onClose, poem, randomIndex, color, setColor, shareHistory }) => {
-  const colors = ['#5adbbd', '#fba465', '#9b6aca', '#ec6c6e', '#f5aac3', '#6ec7e0', '#e86363']; // 색상 값 배열
+  const colors = ['#000000', '#5adbbd', '#fba465', '#9b6aca', '#f5aac3', '#e86363', '#FFFFFF']; // 색상 값 배열
   const viewShotRef = useRef(null);
 
   const shareImage = async () => {
@@ -84,7 +84,7 @@ const ShareModal = ({ isVisible, onClose, poem, randomIndex, color, setColor, sh
             </View>
           </ViewShot>
 
-          <View style={[styles.containerCenter, { marginTop: 10 }]}>
+          <View style={[styles.containerCenter, { marginTop: 12 }]}>
             <View style={{ flexDirection: "row" }}>
               {colors.map((color, index) => (
                 <CircleButton key={index.toString()} color={color} onPress={() => setColor(color)} />
@@ -92,7 +92,7 @@ const ShareModal = ({ isVisible, onClose, poem, randomIndex, color, setColor, sh
             </View>
           </View>
 
-          <View style={[styles.containerCenter, { marginTop: 10, marginBottom: 10 }]}>
+          <View style={[styles.containerCenter, { marginTop: 12, marginBottom: 12 }]}>
             <View style={{ flexDirection: "row" }}>
               <TouchableOpacity
                 style={[styles.button, { width: 100, marginRight: 10 }]}

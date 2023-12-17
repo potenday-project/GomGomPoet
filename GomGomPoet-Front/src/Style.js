@@ -217,6 +217,7 @@ export const styles = StyleSheet.create({
     height: 40, // 원하는 크기로 조절
     borderRadius: 20, // width / 2 로 설정하여 완벽한 원을 만듦
     marginHorizontal: 5, // 버튼 사이의 간격
+    boxShadow: '0 0 2px'
     // 버튼에 그림자나 다른 스타일을 추가할 수 있습니다.
   },
 
