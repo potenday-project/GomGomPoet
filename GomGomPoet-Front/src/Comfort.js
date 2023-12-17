@@ -71,7 +71,9 @@ export default ({ route, navigation }) => {
     if (_poem) {
       return;
     }
-    setRandomIndex(Math.floor(Math.random() * (IMAGE_COUNT - 1)) + 1);
+    let min = 80;
+    let max = 82;
+    setRandomIndex(Math.floor(Math.random() * (max - min + 1)) + min);
     let headers = {
       'Connection': 'keep-alive',
       'Content-Type': 'application/json',
