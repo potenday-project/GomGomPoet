@@ -129,6 +129,19 @@ export default ({ route, navigation }) => {
     })
   }, [isFinished])
 
+  useEffect(() => {
+    if (route.params.poem) {
+      let _poem = route.params.poem;
+      let _letter = route.params.letter;
+      let _image = route.params.image;
+      let _color = route.params.color;
+      setRandomIndex(_image || 1);
+      setPoem(_poem || '');
+      setLetter(_letter || '');
+      setColor(_color || '#000000');
+    }
+  }, [route.params]);
+
   return (
     <ImageBackground style={styles.container} source={require(`../assets/new-bk-img.jpg`)}>
       <ShareModal isVisible={isModalVisible} onClose={() => setIsModalVisible(false)} poem={poem} randomIndex={randomIndex} color={color} setColor={setColor} shareHistory={shareHistory} />
