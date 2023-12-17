@@ -95,13 +95,13 @@ const ShareModal = ({ isVisible, onClose, poem, randomIndex, color, setColor, sh
           <View style={[styles.containerCenter, { marginTop: 12, marginBottom: 12 }]}>
             <View style={{ flexDirection: "row" }}>
               <TouchableOpacity
-                style={[styles.button, { width: 100, marginRight: 10 }]}
+                style={[styles.button, { width: 100, marginRight: 10, backgroundColor: '#e4eeff', borderRadius: '5px' }]}
                 onPress={shareImage}
               >
                 <Text style={[styles.buttonText, styles.defaultFont]}>공유하기</Text>
               </TouchableOpacity>
               <TouchableOpacity
-                style={[styles.button, { width: 100 }]}
+                style={[styles.button, { width: 100, backgroundColor: '#ffe4f4', borderRadius: '5px' }]}
                 onPress={shareHistory}
               >
                 <Text style={[styles.buttonText, styles.defaultFont]}>자랑하기</Text>
