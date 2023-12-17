@@ -60,7 +60,7 @@ export default ({ navigation }) => {
         </View>
 
         <View style={styles.containerCenterMiddle}>
-          <View style={[styles.gomgomImageContainer, { marginTop: 10 }]}>
+          <View style={[styles.gomgomImageContainer, { marginTop: 20 }]}>
             <Image
               source={require("../assets/new-gom-img.png")}
               style={styles.gomgomImage}
@@ -68,7 +68,7 @@ export default ({ navigation }) => {
           </View>
         </View>
 
-        <View style={[styles.containerCenterMiddle, { marginTop: 30 }]}>
+        <View style={styles.containerCenterMiddle}>
           <TextInput
             style={[styles.input, styles.defaultFont]}
             placeholder="오늘의 고민을 입력해주세요."

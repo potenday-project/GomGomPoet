@@ -71,14 +71,14 @@ export const styles = StyleSheet.create({
     backgroundColor: '#e5e7e5',
   },
   gomgomImageContainer: {
-    width: 260,
-    height: 260,
+    width: 230,
+    height: 230,
   },
   gomgomImage: {
     width: "100%", // 이미지를 부모 컨테이너의 크기에 맞게 조정
     height: "100%", // 이미지를 부모 컨테이너의 크기에 맞게 조정
     resizeMode: "cover",
-    marginTop: '-5px'
+    marginTop: '-15px'
   },
   // History.js
   totalListbox: {
