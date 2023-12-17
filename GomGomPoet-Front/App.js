@@ -12,8 +12,8 @@ export default function App() {
 
   const fetchFonts = async () => {
     await Font.loadAsync({
-        SKYBORI: require('./assets/fonts/SKYBORI.ttf'),
-        YeongdeokSnowCrab: require('./assets/fonts/YeongdeokSnowCrab.ttf')
+        HakgyoansimWoojuR: require('./assets/fonts/HakgyoansimWoojuR.ttf'),
+        YeongdeokSea: require('./assets/fonts/YeongdeokSea.ttf')
     });
     setReady(true);
   }
