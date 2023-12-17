@@ -78,7 +78,7 @@ export default ({ navigation }) => {
         </View>
 
         {/* 버튼 영역 시작 */}
-        <View style={[styles.containerCenter, { marginBottom: 20 }]}>
+        <View style={[styles.containerCenter, { marginBottom: 10 }]}>
           <View style={{ flexDirection: "row" }}>
             <TouchableOpacity
               style={[styles.button, { width: 100, backgroundColor: '#e4eeff' }]}

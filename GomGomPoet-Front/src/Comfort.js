@@ -128,7 +128,7 @@ export default ({ route, navigation }) => {
   }, [isFinished])
 
   return (
-    <ImageBackground style={styles.container}>
+    <ImageBackground style={styles.container} source={require(`../assets/new-bk-img.jpg`)}>
       <ShareModal isVisible={isModalVisible} onClose={() => setIsModalVisible(false)} poem={poem} randomIndex={randomIndex} color={color} setColor={setColor} shareHistory={shareHistory} />
       <ScrollView>
         <View style={styles.logo}>
@@ -185,10 +185,10 @@ export default ({ route, navigation }) => {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: 'rgb(191, 225, 192)',
-    backgroundImage: 'radial-gradient(rgb(127 197 129) 25%, transparent 0), radial-gradient(rgb(127 197 129) 25%, transparent 0)',
-    backgroundPosition: '0 0, 40px 40px',
-    backgroundSize: '80px 80px'
+    // backgroundColor: 'rgb(191, 225, 192)',
+    // backgroundImage: 'radial-gradient(rgb(127 197 129) 25%, transparent 0), radial-gradient(rgb(127 197 129) 25%, transparent 0)',
+    // backgroundPosition: '0 0, 40px 40px',
+    // backgroundSize: '80px 80px'
   },
   logo: {
     width: '260px',
