@@ -1,13 +1,13 @@
-# 당신의 고민 친구 "곰곰시인" 
+# 시로 풀어내는 나만의 고민 친구 "곰곰시인" 
 **312 포텐데이 HyperCLOVA X** <내이름은> 팀 프로젝트 
 <p align="center">
-  <img src="https://github.com/potenday-project/GomGomPoet/assets/72718565/c1dd764b-5927-4e04-9c9c-bb5208cca956" width="800">
+  <img src="https://github.com/potenday-project/GomGomPoet/assets/72718565/19a52113-d87d-4ea6-98f2-f7db92fadead" width="800">
 </p>
 
 
 ## 🐻 곰곰시인 소개
 <p align="center">
-  <img src="https://github.com/potenday-project/GomGomPoet/assets/72718565/b0b4d930-50a2-44f1-9bf3-d2229e67796d" width="800">
+  <img src="https://github.com/potenday-project/GomGomPoet/assets/72718565/a2fd51c6-383e-4aca-85d0-33f3a7971111" width="800">
 </p>
 
 <br>
@@ -38,8 +38,8 @@
       <td align="center"><img src="https://github.com/potenday-project/GomGomPoet/assets/72718565/c5b24cff-4dbb-4f03-baca-11c199614a2c" width="100px" alt="김정우"/></td>
     </tr>
     <tr>
-      <td align="center"><sub><b> 기획, 데이터, 디자인 : 임효정 </b></sub></td>
-      <td align="center"><sub><b> 기획, 데이터 : 모윤호 </b></sub></td>
+      <td align="center"><sub><b> PM, 기획, AI, 디자인 : 임효정 </b></sub></td>
+      <td align="center"><sub><b> 기획, AI : 모윤호 </b></sub></td>
       <td align="center"><sub><b> BackEnd 개발 : 조민욱 </b></sub></td>
       <td align="center"><sub><b> FrontEnd 개발 : 이윤정 </b></sub></td>
       <td align="center"><sub><b> FrontEnd 개발 : 김정우 </b></sub></td>
@@ -58,7 +58,7 @@
 
 ## 🤔곰곰시인 개발 배경
 <p align="center">
-  <img src="https://github.com/potenday-project/GomGomPoet/assets/72718565/1f91573c-b3a5-4ac5-ad1e-ad1dc43dbc33" width="800">
+  <img src="https://github.com/potenday-project/GomGomPoet/assets/72718565/e7ce4ad2-5795-40df-a808-8fd649149cd3" width="800">
 </p>
 <br>
 
@@ -72,17 +72,17 @@
 5. 사이트 내 공유
 
 <p align="center">
-  <img src="https://github.com/potenday-project/GomGomPoet/assets/72718565/ff469c3f-cc3f-4005-8182-e9e382bda04f" width="800">
+  <img src="https://github.com/potenday-project/GomGomPoet/assets/72718565/d72a3128-a703-4950-ac9c-e090a550dc20" width="800">
 </p>
 <br>
 
 ## 📔 곰곰시인 사용법
 
 <p align="center">
-  <img src="https://github.com/potenday-project/GomGomPoet/assets/72718565/c53a26ce-fd26-49d0-8dc9-782104056523" width="800">
+  <img src="https://github.com/potenday-project/GomGomPoet/assets/72718565/60921a31-cec9-420f-9b86-ccb224175dbd" width="800">
 </p>
 <p align="center">
-  <img src="https://github.com/potenday-project/GomGomPoet/assets/72718565/85154736-2aea-45eb-9fe4-e03fd7e0dd5c" width="800">
+  <img src="https://github.com/potenday-project/GomGomPoet/assets/72718565/bdd60980-d6b1-4d7e-9fa5-4457bdc11223" width="800">
 </p>
 <br>
 
@@ -112,7 +112,7 @@
 읽어주셔서 감사합니다!
 
 <p align="center">
-  <img src="https://github.com/potenday-project/GomGomPoet/assets/72718565/3f9691d1-2c8a-48c3-818b-37ab468f1cc8" width="800">
+  <img src="https://github.com/potenday-project/GomGomPoet/assets/72718565/173f33c1-d646-4601-b923-d1f4f8439d23" width="800">
 </p>
 
 <br>
