@@ -67,6 +67,10 @@ export default ({ route, navigation }) => {
     setIsModalVisible(!isModalVisible);
   };
 
+  const handlePressLogo = () => {
+    navigation.navigate("Confide");
+  };
+
   useEffect(() => {
     if (_poem) {
       return;
@@ -146,9 +150,11 @@ export default ({ route, navigation }) => {
     <ImageBackground style={styles.container} source={require(`../assets/new-bk-img.jpg`)}>
       <ShareModal isVisible={isModalVisible} onClose={() => setIsModalVisible(false)} poem={poem} randomIndex={randomIndex} color={color} setColor={setColor} shareHistory={shareHistory} />
       <ScrollView>
-        <View style={styles.logo}>
-          <ImageBackground source={require(`../assets/new-gom-logo.png`)} style={styles.logoimg} />
-        </View>
+        <TouchableOpacity onPress={() => handlePressLogo()}>
+          <View style={styles.logo}>
+            <ImageBackground source={require(`../assets/new-gom-logo.png`)} style={styles.logoimg} />
+          </View>
+        </TouchableOpacity>
         <ViewShot ref={viewShotRef} style={styles.box} options={{ format: 'png', quality: 0.9 }}>
           <ImageBackground source={require(`../assets/tnl_img/${randomIndex}.jpg`)} resizeMode='cover'
             style={[styles.thumbnail, { position: 'relative' }]}>

@@ -11,7 +11,8 @@ import {
   ScrollView,
 } from "react-native";
 import { styles } from "./Style";
-import ViewShot from 'react-native-view-shot';
+import WarningModal from "./WarningModal";
+import ViewShot from "react-native-view-shot";
 
 const CircleButton = ({ color, onPress }) => (
   <TouchableOpacity
@@ -22,8 +23,14 @@ const CircleButton = ({ color, onPress }) => (
 
 
 const ShareModal = ({ isVisible, onClose, poem, randomIndex, color, setColor, shareHistory }) => {
-  const colors = ['#000000', '#5adbbd', '#fba465', '#9b6aca', '#f5aac3', '#e86363', '#FFFFFF']; // 색상 값 배열
+  const colors = ['#000000', '#3685E0', '#5adbbd', '#fba465', '#9b6aca', '#f5aac3', '#FFFFFF']; // 색상 값 배열
   const viewShotRef = useRef(null);
+  const [isWarningVisible, setIsWarningVisible] = useState(false);
+  const handleClickShareBtn = (isOk) => {
+    setIsWarningVisible(false);
+    if (isOk) shareHistory();
+  };
+  const handleClickWarningBtn = () => setIsWarningVisible(true);
 
   const shareImage = async () => {
     try {
@@ -52,7 +59,11 @@ const ShareModal = ({ isVisible, onClose, poem, randomIndex, color, setColor, sh
       visible={isVisible}
       onRequestClose={onClose}
     >
-      <View style={[styles.header, { justifyContent: 'flex-end' }]}>
+      <WarningModal
+        isVisible={isWarningVisible}
+        onClose={(isOk) => handleClickShareBtn(isOk)}
+      />
+      <View style={[styles.header, { justifyContent: "flex-end" }]}>
         {/* <Text style={styles.headerText}>공유하기</Text> */}
         <TouchableOpacity
           onPress={onClose}
@@ -79,7 +90,6 @@ const ShareModal = ({ isVisible, onClose, poem, randomIndex, color, setColor, sh
                 <View style={styles.shareLogoBox}>
                   <ImageBackground source={require(`../assets/new-gom-logo.png`)} style={styles.logoImage} />
                 </View>
-
               </ImageBackground>
             </View>
           </ViewShot>
@@ -102,16 +112,14 @@ const ShareModal = ({ isVisible, onClose, poem, randomIndex, color, setColor, sh
               </TouchableOpacity>
               <TouchableOpacity
                 style={[styles.button, { width: 100, backgroundColor: '#ffe4f4', borderRadius: '5px' }]}
-                onPress={shareHistory}
+                onPress={handleClickWarningBtn}
               >
                 <Text style={[styles.buttonText, styles.defaultFont]}>자랑하기</Text>
               </TouchableOpacity>
             </View>
           </View>
-
         </View>
       </ScrollView>
-
     </Modal>
   );
 };
