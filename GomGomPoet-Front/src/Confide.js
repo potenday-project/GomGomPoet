@@ -1,25 +1,23 @@
 import React, { useState } from "react";
 import { StatusBar } from "expo-status-bar";
-import {
-  Text,
-  SafeAreaView,
-  Image,
-  ImageBackground,
-  View,
-  TextInput,
-  TouchableOpacity,
-} from "react-native";
-import PopupModal from "./PopupModal";
+import { Text, SafeAreaView, Image, ImageBackground, View, TextInput, TouchableOpacity, } from "react-native";
+import ValidationModal from "./ValidationModal";
 import Tab from "./Tab";
 import { styles } from "./Style";
 
 export default ({ navigation }) => {
   const [inputText, setInputText] = useState("");
-  const [isModalVisible, setIsModalVisible] = useState(false);
-  const handlePressBtn = (type) => navigation.navigate("Comfort", { input: inputText, type });
+  const [isValidVisible, setIsValidVisible] = useState(false);
+  const handlePressBtn = (type) => {
+    if(inputText.length < 10) {
+      setIsValidVisible(true);
+    }else {
+      navigation.navigate("Comfort", { input: inputText, type });
+    }
+  };
 
-  const toggleModal = () => {
-    setIsModalVisible(!isModalVisible); // 모달 가시성을 토글
+  const toggleValidModal = () => {
+    setIsValidVisible(!isValidVisible); // 모달 가시성을 토글
   };
 
   return (
@@ -28,7 +26,7 @@ export default ({ navigation }) => {
         style={styles.safeAreaContainer}
         edges={["top", "right", "bottom", "left"]}
       >
-        <PopupModal isVisible={isModalVisible} onClose={toggleModal} />
+        <ValidationModal isVisible={isValidVisible} onClose={toggleValidModal} />
         {/*
         <View style={styles.header}>
           <Text style={styles.headerText}>곰곰시인</Text>
