@@ -1,6 +1,5 @@
 const fs = require('fs');
-const https = require('https');
-const { HTTPS, CLOVA, PORT } = require('./constants');
+const { CLOVA, PORT } = require('./constants');
 const express = require('express');
 const cors = require('cors');
 const app = express();
@@ -113,11 +112,4 @@ app.post('/logging', (req, res) => {
     })
 })
 
-const init = () => console.log('Server is running on port ' + PORT);
-
-if (HTTPS) {
-    const server = https.createServer(HTTPS, app);
-    server.listen(PORT, init);
-} else {
-    app.listen(PORT, init);
-}
+app.listen(PORT, () => console.log('Server is running on port ' + PORT));
