@@ -1,5 +1,7 @@
 const fs = require('fs');
+const { fetchEventSource } = require('@fortaine/fetch-event-source');
 const { CLOVA, PORT } = require('./constants');
+
 const express = require('express');
 const cors = require('cors');
 const app = express();
@@ -13,22 +15,19 @@ const getStream = async (res, body) => {
         'Cache-Control': 'no-cache',
         'Connection': 'keep-alive',
     });
-    let clovaRes = await fetch(CLOVA.URL, {
+    fetchEventSource(CLOVA.URL, {
         method: 'POST',
         headers: CLOVA.HEADERS,
-        body
-    });
-    let stream = clovaRes.body;
-    let reader = stream.getReader();
-    let decoder = new TextDecoder();
-    while (true) {
-        let { done, value } = await reader.read();
-        if (done) {
-            res.end();
-            break;
+        body,
+        onmessage: ({ id, event, data }) => {
+            res.write(`id: ${id}\n`);
+            res.write(`event: ${event}\n`);
+            res.write(`data: ${data}\n\n`);
+            if (event === 'signal' && data === '{"data":"[DONE]"}') {
+                res.end();
+            }
         }
-        res.write(decoder.decode(value, { stream: true }));
-    }
+    });
 }
 
 const replaceParams = (body, params) => {
