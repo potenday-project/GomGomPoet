@@ -84,40 +84,18 @@ export default ({ route, navigation }) => {
       'Cache-Control': 'no-cache',
       'changeOrigin': true
     };
-    fetchEventSource('/' + type, {
+    fetchEventSource('/poem', {
       method: 'POST',
       headers,
-      body: JSON.stringify({ input }),
-      onmessage: event => {
-        let data = JSON.parse(event.data);
-        if (data.data === '[DONE]') {
+      body: JSON.stringify({ input, type }),
+      onmessage: ({ id, event, data }) => {
+        data = JSON.parse(data);
+        if (event === 'signal' && data.data === '[DONE]') {
           return;
         }
         let content = data.message.content;
-        if (event.event === 'result') {
-          setPoem(content);
-          content = content.replaceAll('\n', '\\n');
-          fetchEventSource(`/${type}/letter`, {
-            method: 'POST',
-            headers,
-            body: JSON.stringify({ input, content }),
-            onmessage: event => {
-              let data = JSON.parse(event.data);
-              if (data.data === '[DONE]') {
-                return;
-              }
-              let content = data.message.content;
-              if (event.event === 'result') {
-                setLetter(content);
-                setFinished(true);
-              } else {
-                setLetter(letter => letter + content);
-              }
-            }
-          });
-        } else {
-          setPoem(poem => poem + content);
-        }
+        let func = data.type === 'poem' ? setPoem : setLetter;
+        event === 'result' ? func(content) : func(val => val + content);
       }
     });
   }, []);

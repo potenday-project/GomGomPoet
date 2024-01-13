@@ -9,50 +9,54 @@ app.use(express.json());
 app.use(cors());
 app.use(express.static('web-build'));
 
-const getStream = async (res, body) => {
+app.post('/poem', async (req, res) => {
     res.writeHead(200, {
         'Content-Type': 'text/event-stream',
         'Cache-Control': 'no-cache',
         'Connection': 'keep-alive',
     });
-    fetchEventSource(CLOVA.URL, {
+    let { type, input } = req.body;
+    let isPoem = type === 'poem';
+    let poemBody = isPoem ? CLOVA.POEM : CLOVA.ACROSTICPOEM;
+    poemBody = JSON.stringify(poemBody).replace('{input}', input);
+    let letterBody = isPoem ? CLOVA.POEM_LETTER : CLOVA.ACROSTICPOEM_LETTER;
+    letterBody = JSON.stringify(letterBody).replace('{input}', input);
+    let poemContent;
+    let letterContent;
+    await fetchEventSource(CLOVA.URL, {
         method: 'POST',
         headers: CLOVA.HEADERS,
-        body,
+        body: poemBody,
         onmessage: ({ id, event, data }) => {
+            data = JSON.parse(data);
+            data.type = 'poem';
             res.write(`id: ${id}\n`);
             res.write(`event: ${event}\n`);
-            res.write(`data: ${data}\n\n`);
+            res.write(`data: ${JSON.stringify(data)}\n\n`);
+            if (event === 'result') {
+                poemContent = data.message.content;
+            }
+        }
+    });
+    letterBody = letterBody.replace('{content}', poemContent.replaceAll('\n', '\\n'));
+    await fetchEventSource(CLOVA.URL, {
+        method: 'POST',
+        headers: CLOVA.HEADERS,
+        body: letterBody,
+        onmessage: ({ id, event, data }) => {
+            data = JSON.parse(data);
+            data.type = 'letter';
+            res.write(`id: ${id}\n`);
+            res.write(`event: ${event}\n`);
+            res.write(`data: ${JSON.stringify(data)}\n\n`);
+            if (event === 'result') {
+                letterContent = data.message.content;
+            }
             if (event === 'signal' && data === '{"data":"[DONE]"}') {
                 res.end();
             }
         }
     });
-}
-
-const replaceParams = (body, params) => {
-    body = JSON.stringify(body);
-    params.input = params.input.replaceAll('\n', '');
-    for (let param in params) {
-        body = body.replace(`{${param}}`, params[param]);
-    }
-    return body;
-}
-
-app.post('/poem', async (req, res) => {
-    await getStream(res, replaceParams(CLOVA.POEM, req.body));
-})
-
-app.post('/acrosticpoem', async (req, res) => {
-    await getStream(res, replaceParams(CLOVA.ACROSTICPOEM, req.body));
-})
-
-app.post('/poem/letter', async (req, res) => {
-    await getStream(res, replaceParams(CLOVA.POEM_LETTER, req.body));
-})
-
-app.post('/acrosticpoem/letter', async (req, res) => {
-    await getStream(res, replaceParams(CLOVA.ACROSTICPOEM_LETTER, req.body));
 })
 
 const createFileName = (date) => {
