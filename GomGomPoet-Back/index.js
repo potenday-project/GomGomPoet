@@ -1,4 +1,4 @@
-const mysql = require('mysql2');
+const mysql = require('mysql2/promise');
 const { v4: uuidv4 } = require('uuid');
 const { fetchEventSource } = require('@fortaine/fetch-event-source');
 const { DB, CLOVA, PORT } = require('./constants');
@@ -6,15 +6,19 @@ const { DB, CLOVA, PORT } = require('./constants');
 const express = require('express');
 const cors = require('cors');
 
-const connection = mysql.createConnection(DB);
-connection.connect();
+let connection;
 
 const app = express();
 app.use(express.json());
 app.use(cors());
 app.use(express.static('web-build'));
 
-app.post('/poem', async (req, res) => {
+app.get('/api/share/:uuid', async (req, res) => {
+    let [result] = await connection.query('SELECT uuid, type, input, poem, letter, image, color FROM history WHERE uuid = ?', [req.params.uuid]);
+    res.send(result[0]);
+});
+
+app.post('/api/poem', async (req, res) => {
     res.writeHead(200, {
         'Content-Type': 'text/event-stream',
         'Cache-Control': 'no-cache',
@@ -61,7 +65,7 @@ app.post('/poem', async (req, res) => {
     });
     let uuid = uuidv4().replaceAll('-', '');
     let ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
-    connection.query('INSERT INTO history (uuid, type, input, poem, letter, poem_prompt, letter_prompt, image, color, ip) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+    await connection.query('INSERT INTO history (uuid, type, input, poem, letter, poem_prompt, letter_prompt, image, color, ip) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
         [uuid, type, input, poemContent, letterContent, poemBody, letterBody, 1, 'FFFFFF', ip]);
     res.write(`id: ${uuidv4()}\n`);
     res.write(`event: uuid\n`);
@@ -69,4 +73,7 @@ app.post('/poem', async (req, res) => {
     res.end();
 })
 
-app.listen(PORT, '0.0.0.0', () => console.log('Server is running on port ' + PORT));
+app.listen(PORT, '0.0.0.0', async () => {
+    console.log('Server is running on port ' + PORT);
+    connection = await mysql.createConnection(DB);
+});
