@@ -1,4 +1,3 @@
-const fs = require('fs');
 const mysql = require('mysql2');
 const { v4: uuidv4 } = require('uuid');
 const { fetchEventSource } = require('@fortaine/fetch-event-source');
@@ -58,15 +57,16 @@ app.post('/poem', async (req, res) => {
             if (event === 'result') {
                 letterContent = data.message.content;
             }
-            if (event === 'signal' && data === '{"data":"[DONE]"}') {
-                res.end();
-            }
         }
     });
     let uuid = uuidv4().replaceAll('-', '');
     let ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
     connection.query('INSERT INTO history (uuid, type, input, poem, letter, poem_prompt, letter_prompt, image, color, ip) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
         [uuid, type, input, poemContent, letterContent, poemBody, letterBody, 1, 'FFFFFF', ip]);
+    res.write(`id: ${uuidv4()}\n`);
+    res.write(`event: uuid\n`);
+    res.write(`data: ${uuid}\n\n`);
+    res.end();
 })
 
 app.listen(PORT, '0.0.0.0', () => console.log('Server is running on port ' + PORT));
