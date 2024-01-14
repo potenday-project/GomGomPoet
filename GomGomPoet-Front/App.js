@@ -7,6 +7,16 @@ import Comfort from "./src/Comfort";
 import History from "./src/History";
 
 const Stack = createNativeStackNavigator();
+const linking = {
+    prefixes: ['https://gomgom-poet.co.kr'],
+    config: {
+        screens: {
+            Confide: '',
+            Comfort: '/comfort'
+        }
+    }
+};
+
 export default function App() {
   let [isReady, setReady] = useState(false);
 
@@ -25,7 +35,7 @@ export default function App() {
   }
 
   return (
-    <NavigationContainer>
+    <NavigationContainer linking={linking}>
       <Stack.Navigator
         initialRouteName="Confide"
         screenOptions={{ headerShown: false }}
