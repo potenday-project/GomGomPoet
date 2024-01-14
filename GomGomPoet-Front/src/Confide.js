@@ -96,7 +96,7 @@ export default ({ navigation }) => {
         <StatusBar style="auto" />
       </SafeAreaView>
 
-      <Tab navigation={navigation} idx={0} disabled/>
+      {/* <Tab navigation={navigation} idx={0} disabled/> */}
     </ImageBackground>
   );
 };

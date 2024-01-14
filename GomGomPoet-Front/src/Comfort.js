@@ -175,9 +175,11 @@ export default ({ route, navigation }) => {
 
         <StatusBar style='auto' />
       </ScrollView>
+      {/*
       <View style={{ position: 'sticky', bottom: 0 }}>
         <Tab navigation={navigation} idx={0} />
       </View>
+      */}
     </ImageBackground>
   );
 }
