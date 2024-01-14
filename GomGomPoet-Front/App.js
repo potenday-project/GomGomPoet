@@ -1,4 +1,4 @@
-import { NavigationContainer } from "@react-navigation/native";
+import { NavigationContainer, getPathFromState } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import * as Font from 'expo-font';
 import React, { useState, useEffect } from 'react';
@@ -14,6 +14,10 @@ const linking = {
             Confide: '',
             Comfort: '/comfort'
         }
+    },
+    getPathFromState: (state, config) => {
+        let path = getPathFromState(state, config);
+        return path.replace(/\?.+/g, '');
     }
 };
 
