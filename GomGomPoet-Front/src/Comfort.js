@@ -16,6 +16,7 @@ export default ({ route, navigation }) => {
     let [poem, setPoem] = useState(_poem || '');
     let [letter, setLetter] = useState(_letter || '');
     let [color, setColor] = useState(_color || '#000000');
+    let [uuid, setUuid] = useState();
     const [isModalVisible, setIsModalVisible] = useState(false);
     const viewShotRef = useRef(null);
 
@@ -44,7 +45,7 @@ export default ({ route, navigation }) => {
             body: JSON.stringify({ input, type }),
             onmessage: ({ id, event, data }) => {
                 if (event === 'uuid') {
-                    console.log(data);
+                    setUuid(data);
                     return;
                 }
                 data = JSON.parse(data);
@@ -73,7 +74,7 @@ export default ({ route, navigation }) => {
 
     return (
         <ImageBackground style={styles.container} source={require(`../assets/new-bk-img.jpg`)}>
-            <ShareModal isVisible={isModalVisible} onClose={() => setIsModalVisible(false)} poem={poem} randomIndex={randomIndex} color={color} setColor={setColor} />
+            <ShareModal isVisible={isModalVisible} onClose={() => setIsModalVisible(false)} poem={poem} randomIndex={randomIndex} color={color} setColor={setColor} uuid={uuid}/>
             <ScrollView>
                 <TouchableOpacity onPress={() => handlePressLogo()}>
                     <View style={styles.logo}>
