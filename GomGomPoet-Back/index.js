@@ -1,9 +1,15 @@
 const fs = require('fs');
+const mysql = require('mysql2');
+const { v4: uuidv4 } = require('uuid');
 const { fetchEventSource } = require('@fortaine/fetch-event-source');
-const { CLOVA, PORT } = require('./constants');
+const { DB, CLOVA, PORT } = require('./constants');
 
 const express = require('express');
 const cors = require('cors');
+
+const connection = mysql.createConnection(DB);
+connection.connect();
+
 const app = express();
 app.use(express.json());
 app.use(cors());
@@ -57,6 +63,10 @@ app.post('/poem', async (req, res) => {
             }
         }
     });
+    let uuid = uuidv4().replaceAll('-', '');
+    let ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
+    connection.query('INSERT INTO history (uuid, type, input, poem, letter, poem_prompt, letter_prompt, image, color, ip) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+        [uuid, type, input, poemContent, letterContent, poemBody, letterBody, 1, 'FFFFFF', ip]);
 })
 
 const createFileName = (date) => {
@@ -115,4 +125,4 @@ app.post('/logging', (req, res) => {
     })
 })
 
-app.listen(PORT, () => console.log('Server is running on port ' + PORT));
+app.listen(PORT, '0.0.0.0', () => console.log('Server is running on port ' + PORT));

@@ -12,6 +12,8 @@
     "@fortaine/fetch-event-source": "^3.0.6",
     "cors": "^2.8.5",
     "express": "^4.18.2",
-    "https": "^1.0.0"
+    "https": "^1.0.0",
+    "mysql2": "^3.7.0",
+    "uuid": "^9.0.1"
   }
 }
