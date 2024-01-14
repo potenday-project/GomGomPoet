@@ -5,6 +5,7 @@ import React, { useState, useEffect } from 'react';
 import Confide from "./src/Confide";
 import Comfort from "./src/Comfort";
 import History from "./src/History";
+import Share from "./src/Share";
 
 const Stack = createNativeStackNavigator();
 const linking = {
@@ -12,7 +13,8 @@ const linking = {
     config: {
         screens: {
             Confide: '',
-            Comfort: 'comfort'
+            Comfort: 'comfort',
+            Share: 'share/:uuid'
         }
     },
     getPathFromState: (state, config) => {
@@ -57,6 +59,11 @@ export default function App() {
         <Stack.Screen
           name="History"
           component={History}
+          options={{ title: "곰곰시인" }}
+        />
+        <Stack.Screen
+          name="Share"
+          component={Share}
           options={{ title: "곰곰시인" }}
         />
       </Stack.Navigator>
