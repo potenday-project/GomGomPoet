@@ -39,7 +39,7 @@ export default ({ route, navigation }) => {
             'Cache-Control': 'no-cache',
             'changeOrigin': true
         };
-        fetchEventSource('/poem', {
+        fetchEventSource('/api/poem', {
             method: 'POST',
             headers,
             body: JSON.stringify({ input, type }),
