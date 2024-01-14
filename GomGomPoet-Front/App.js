@@ -12,7 +12,7 @@ const linking = {
     config: {
         screens: {
             Confide: '',
-            Comfort: '/comfort'
+            Comfort: 'comfort'
         }
     },
     getPathFromState: (state, config) => {

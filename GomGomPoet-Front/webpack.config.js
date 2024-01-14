@@ -5,12 +5,13 @@ module.exports = async function(env, argv) {
     config.ignoreWarnings = [/Failed to parse source map/];
     config.devServer = {
         proxy: {
-            '/': {
+            '/poem': {
                 target: 'http://localhost:3000',
                 changeOrigin: true
             }
         },
-        compress: false
+        compress: false,
+        historyApiFallback: true
     };
     return config;
 };
