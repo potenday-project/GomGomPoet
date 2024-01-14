@@ -13,6 +13,10 @@ app.use(express.json());
 app.use(cors());
 app.use(express.static('web-build'));
 
+app.get('/share/:uuid', async (req, res) => {
+    res.sendFile('index.html', { root: './web-build' });
+})
+
 app.get('/api/share/:uuid', async (req, res) => {
     let [result] = await connection.query('SELECT uuid, type, input, poem, letter, image, color FROM history WHERE uuid = ?', [req.params.uuid]);
     res.send(result[0]);
