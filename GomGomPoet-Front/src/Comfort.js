@@ -111,7 +111,7 @@ export default ({ route, navigation }) => {
                 </View>
 
                 {/* 이미지 공유 버튼 추가 */}
-                <TouchableOpacity onPress={handleClickShareBtn} style={[styles.tnlBtnClk, { marginBottom: '10px' }]}>
+                <TouchableOpacity onPress={handleClickShareBtn} style={[styles.tnlBtnClk, { marginBottom: '20px' }]}>
                     <Text style={[styles.tnlBtnTxt, extStyles.defaultFont]}>공유하기</Text>
                 </TouchableOpacity>
 
