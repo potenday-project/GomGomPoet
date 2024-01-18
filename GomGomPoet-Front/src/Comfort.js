@@ -91,13 +91,6 @@ export default ({ route, navigation }) => {
                     </ImageBackground>
                 </ViewShot>
 
-
-
-                {/* 이미지 공유 버튼 추가 */}
-                <TouchableOpacity onPress={handleClickShareBtn} style={styles.tnlBtnClk}>
-                    <Text style={[styles.tnlBtnTxt, extStyles.defaultFont]}>이미지 공유하기</Text>
-                </TouchableOpacity>
-
                 <View style={styles.myQuestion}>
                     <View style={[styles.box, styles.myQuestionBox]}>
                         <Text style={[styles.title, styles.myQuestionTitle, extStyles.defaultFont]}>나의 고민</Text>
@@ -116,6 +109,11 @@ export default ({ route, navigation }) => {
                     <View style={[styles.title, styles.messageTitle, extStyles.defaultFont]}>곰곰시인의 편지</View>
                     <Text style={extStyles.defaultFont}>{letter}</Text>
                 </View>
+
+                {/* 이미지 공유 버튼 추가 */}
+                <TouchableOpacity onPress={handleClickShareBtn} style={[styles.tnlBtnClk, { marginBottom: '10px' }]}>
+                    <Text style={[styles.tnlBtnTxt, extStyles.defaultFont]}>공유하기</Text>
+                </TouchableOpacity>
 
                 {/* <TouchableOpacity onPress={toggleModal}>
           <Text style={styles.buttonText}>공유하기</Text>
