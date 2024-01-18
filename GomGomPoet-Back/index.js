@@ -20,7 +20,13 @@ app.get('/share/:uuid', async (req, res) => {
 app.get('/api/share/:uuid', async (req, res) => {
     let [result] = await connection.query('SELECT uuid, type, input, poem, letter, image, color FROM history WHERE uuid = ?', [req.params.uuid]);
     res.send(result[0]);
-});
+})
+
+app.post('/api/share/:uuid/image/:image/color/:color', async (req, res) => {
+    let { uuid, image, color } = req.params;
+    await connection.query('UPDATE history SET image = ?, color = ? WHERE uuid = ?', [image, color, uuid]);
+    res.sendStatus(200);
+})
 
 app.post('/api/poem', async (req, res) => {
     res.writeHead(200, {
@@ -70,7 +76,7 @@ app.post('/api/poem', async (req, res) => {
     let uuid = uuidv4().replaceAll('-', '');
     let ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
     await connection.query('INSERT INTO history (uuid, type, input, poem, letter, poem_prompt, letter_prompt, image, color, ip) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
-        [uuid, type, input, poemContent, letterContent, poemBody, letterBody, 1, 'FFFFFF', ip]);
+        [uuid, type, input, poemContent, letterContent, poemBody, letterBody, 80, '000000', ip]);
     res.write(`id: ${uuidv4()}\n`);
     res.write(`event: uuid\n`);
     res.write(`data: ${uuid}\n\n`);
@@ -80,4 +86,4 @@ app.post('/api/poem', async (req, res) => {
 app.listen(PORT, '0.0.0.0', async () => {
     console.log('Server is running on port ' + PORT);
     connection = await mysql.createConnection(DB);
-});
+})

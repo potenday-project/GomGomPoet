@@ -35,10 +35,15 @@ const ShareModal = ({ isVisible, onClose, poem, randomIndex, color, setColor, uu
     };
 
     const shareLink = () => {
-        navigator.share({
-            title: '곰곰시인',
-            text: '곰곰시인을 통해 고민을 나누고 위로를 받아보세요. https://gomgom-poet.co.kr/share/' + uuid
-        });
+        let _color = color.substring(1);
+        fetch(`/api/share/${uuid}/image/${randomIndex}/color/${_color}`, {
+            method: 'POST'
+        }).then(res => {
+            navigator.share({
+                title: '곰곰시인',
+                text: '곰곰시인을 통해 고민을 나누고 위로를 받아보세요. https://gomgom-poet.co.kr/share/' + uuid
+            });
+        })
     };
 
     return (
