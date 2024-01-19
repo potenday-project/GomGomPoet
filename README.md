@@ -13,7 +13,7 @@
 <br>
 
 ## 💕 곰곰이와 대화하기
-**🐻 서비스 링크 : https://mynameis-21170422-f9d8f836f555.kr.lb.naverncp.com#/** 
+**🐻 서비스 링크 : https://gomgom-poet.co.kr** 
 (도메인 변경 작업중)
 
 <p align="center">
