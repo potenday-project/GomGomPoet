@@ -14,7 +14,6 @@
 
 ## 💕 곰곰이와 대화하기
 **🐻 서비스 링크 : https://gomgom-poet.co.kr** 
-(도메인 변경 작업중)
 
 <p align="center">
   <img src="https://github.com/potenday-project/GomGomPoet/assets/72718565/04146048-6932-4aae-9bfc-6a592281656b" width="300">
