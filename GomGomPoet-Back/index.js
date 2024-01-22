@@ -6,7 +6,7 @@ const { DB, CLOVA, PORT } = require('./constants');
 const express = require('express');
 const cors = require('cors');
 
-let connection;
+const pool = mysql.createPool(DB);
 
 const app = express();
 app.use(express.json());
@@ -18,13 +18,17 @@ app.get('/share/:uuid', async (req, res) => {
 })
 
 app.get('/api/share/:uuid', async (req, res) => {
+    let connection = await pool.getConnection();
     let [result] = await connection.query('SELECT uuid, type, input, poem, letter, image, color FROM history WHERE uuid = ?', [req.params.uuid]);
+    connection.release();
     res.send(result[0]);
 })
 
 app.post('/api/share/:uuid/image/:image/color/:color', async (req, res) => {
     let { uuid, image, color } = req.params;
+    let connection = await pool.getConnection();
     await connection.query('UPDATE history SET image = ?, color = ? WHERE uuid = ?', [image, color, uuid]);
+    connection.release();
     res.sendStatus(200);
 })
 
@@ -75,15 +79,14 @@ app.post('/api/poem', async (req, res) => {
     });
     let uuid = uuidv4().replaceAll('-', '');
     let ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
+    let connection = await pool.getConnection();
     await connection.query('INSERT INTO history (uuid, type, input, poem, letter, poem_prompt, letter_prompt, image, color, ip) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
         [uuid, type, input, poemContent, letterContent, poemBody, letterBody, 80, '000000', ip]);
+    connection.release();
     res.write(`id: ${uuidv4()}\n`);
     res.write(`event: uuid\n`);
     res.write(`data: ${uuid}\n\n`);
     res.end();
 })
 
-app.listen(PORT, '0.0.0.0', async () => {
-    console.log('Server is running on port ' + PORT);
-    connection = await mysql.createConnection(DB);
-})
+app.listen(PORT, '0.0.0.0', () => console.log('Server is running on port ' + PORT))
