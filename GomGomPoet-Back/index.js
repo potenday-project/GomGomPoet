@@ -61,7 +61,7 @@ app.post('/api/poem', async (req, res) => {
             }
         }
     });
-    letterBody = letterBody.replace('{content}', poemContent.replaceAll('\n', '\\n').substr(0, 300));
+    letterBody = letterBody.replace('{content}', poemContent.replaceAll('\n', '\\n'));
     await fetchEventSource(CLOVA.URL, {
         method: 'POST',
         headers: CLOVA.HEADERS,
